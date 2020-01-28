@@ -2,7 +2,7 @@
 
 var FLAT_TYPE = ['palace', 'flat', 'house', 'bungalo'];
 var CHECK_TIME = ['12:00', '13:00', '14:00'];
-var FEATURES = ["wifi", "dishwasher", "parking", "washer", "elevator", "conditioner"];
+var FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 var DATA_COUNT = 8;
 var PIN_HALFWIDTH = 36;
 var PIN_HEIGHT = 84;
@@ -26,7 +26,7 @@ var getRandomString = function (count) { // Случайная строка за
   var text = '';
   var possible = 'abcdefghijklmnopqrstuvwxyz';
 
-  for( var i=0; i < count; i++ ) {
+  for (var i = 0; i < count; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return text;
@@ -57,18 +57,19 @@ var createDataObject = function (counter, maxWidth) { // Создаем объе
       'type': FLAT_TYPE[getRandomIndex(FLAT_TYPE)],
       'rooms': getRandomInt(1, 5),
       'quests': getRandomInt(1, 10),
-      "checkin": CHECK_TIME[getRandomIndex(CHECK_TIME)],
-      "checkout": CHECK_TIME[getRandomIndex(CHECK_TIME)],
-      "features": createRandomLengthArray(FEATURES),
-      "description": getRandomString(10),
-      "photos": createRandomLengthArray(["http://o0.github.io/assets/images/tokyo/hotel1.jpg", "http://o0.github.io/assets/images/tokyo/hotel2.jpg", "http://o0.github.io/assets/images/tokyo/hotel3.jpg"])
+      'checkin': CHECK_TIME[getRandomIndex(CHECK_TIME)],
+      'checkout': CHECK_TIME[getRandomIndex(CHECK_TIME)],
+      'features': createRandomLengthArray(FEATURES),
+      'description': getRandomString(10),
+      'photos': createRandomLengthArray(['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'])
     },
 
-    "location": {
-      "x": getRandomInt(62, maxWidth),
-      "y": getRandomInt(130, 630)
+    'location': {
+      'x': getRandomInt(62, maxWidth),
+      'y': getRandomInt(130, 630)
     }
-  }
+  };
+
   return dataObject;
 };
 
