@@ -161,15 +161,14 @@ var renderPins = function (dataList) {
   var fragment = document.createDocumentFragment();
 
   for (var i = 0; i < dataList.length; i++) {
-    var elem = createPin(dataList[i]);
-    fragment.appendChild(elem);
+    fragment.appendChild(createPin(dataList[i]));
   }
 
-  return fragment;
+  similarListElement.appendChild(fragment);
 };
 
 var renderCard = function (data) {
-  return createCard(data);
+  similarListElement.appendChild(createCard(data));
 };
 
-similarListElement.appendChild(renderPins(cards));
+renderPins(cards);
