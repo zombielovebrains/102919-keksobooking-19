@@ -172,3 +172,4 @@ var renderCard = function (data) {
 };
 
 renderPins(cards);
+renderCard(cards[0]);
