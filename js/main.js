@@ -7,7 +7,8 @@ var DATA_COUNT = 8;
 var PIN_HALFWIDTH = 31;
 var PIN_HEIGHT = 70;
 
-var similarListElement = document.querySelector('.map__pins');
+var similarPinList = document.querySelector('.map__pins');
+var similarCardList = document.querySelector('.map');
 var similarCardTemplate = document.querySelector('#card').content.querySelector('.map__card');
 var similarPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 document.querySelector('.map').classList.remove('map--faded');
@@ -164,11 +165,11 @@ var renderPins = function (dataList) {
     fragment.appendChild(createPin(dataList[i]));
   }
 
-  similarListElement.appendChild(fragment);
+  similarPinList.appendChild(fragment);
 };
 
 var renderCard = function (data) {
-  similarListElement.appendChild(createCard(data));
+  similarCardList.insertBefore(createCard(data), document.querySelector('.map__filters-container'));
 };
 
 renderPins(cards);
