@@ -51,7 +51,7 @@ var createRandomLengthArray = function (arr) { // Массив рандомно�
 
 var createData = function (counter) { // Создаем объект с рандомными данными
   var location = {
-    x: getRandomInt(62, MAX_X ),
+    x: getRandomInt(62, MAX_X),
     y: getRandomInt(130, 630)
   };
 
