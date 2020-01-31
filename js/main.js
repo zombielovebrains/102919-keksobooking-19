@@ -6,6 +6,9 @@ var FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditio
 var DATA_COUNT = 8;
 var PIN_HALFWIDTH = 31;
 var PIN_HEIGHT = 70;
+var PHOTO_WIDTH = 45;
+var PHOTO_HEIGHT = 40;
+var MAX_X = Math.floor(document.querySelector('.map').offsetWidth);
 
 var similarPinList = document.querySelector('.map__pins');
 var similarCardList = document.querySelector('.map');
@@ -46,9 +49,9 @@ var createRandomLengthArray = function (arr) { // Массив рандомно�
 };
 
 
-var createData = function (counter, maxWidth) { // Создаем объект с рандомными данными
+var createData = function (counter) { // Создаем объект с рандомными данными
   var location = {
-    x: getRandomInt(62, maxWidth),
+    x: getRandomInt(62, MAX_X ),
     y: getRandomInt(130, 630)
   };
 
@@ -82,10 +85,8 @@ var createData = function (counter, maxWidth) { // Создаем объект �
 
 var createDataList = function () { // Заполняем массив объектами
   var dataList = [];
-  var maxWidth = Math.floor(document.querySelector('.map').offsetWidth);
-
   for (var i = 0; i < DATA_COUNT; i++) {
-    var data = createData(i + 1, maxWidth);
+    var data = createData(i + 1);
     dataList.push(data);
   }
   return dataList;
@@ -96,8 +97,8 @@ var createPhotoElement = function (src) {
   elem.src = src;
   elem.classList.add('popup__photo');
   elem.alt = 'Фотография жилья';
-  elem.width = '45';
-  elem.height = '40';
+  elem.width = PHOTO_WIDTH;
+  elem.height = PHOTO_HEIGHT;
   return elem;
 };
 
@@ -130,7 +131,7 @@ var createCard = function (data) { // Заполняем шаблон объяв
   cardElement.querySelector('.popup__avatar').src = data.author.avatar;
   cardElement.querySelector('.popup__title').textContent = data.offer.title;
   cardElement.querySelector('.popup__text--address').textContent = data.offer.address;
-  cardElement.querySelector('.popup__text--price').innerHtml = data.offer.price + '&#x20bd;' + '<span>ночь</span>';
+  cardElement.querySelector('.popup__text--price').innerHTML = data.offer.price + ' &#x20bd;' + '<span>/ночь</span>';
   cardElement.querySelector('.popup__type').textContent = data.offer.type;
   cardElement.querySelector('.popup__text--capacity').textContent = data.offer.rooms + ' комнаты для ' + data.offer.quests + ' гостей';
   cardElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + data.offer.checkin + ', выезд до ' + data.offer.checkout;
