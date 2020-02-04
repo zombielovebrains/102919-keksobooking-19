@@ -248,6 +248,6 @@ var checkFieldsConstraints = function () {
   }
 };
 
-capacity.addEventListener('focus', function () {
+capacity.addEventListener('change', function () {
   checkFieldsConstraints();
 });
