@@ -11,8 +11,8 @@ var PHOTO_HEIGHT = 40;
 var MAX_X = Math.floor(document.querySelector('.map').offsetWidth);
 var LEFT_MOUSE_BUTTON = 0;
 var ENTER_CODE = 13;
-var ORIGINAL_MAIN_PIN_X = 601; //Значение .map__pin--main{left: 570px}  + половина ширины .map__pin--main img{width: 62/2 = 31}
-var ORIGINAL_MAIN_PIN_Y = 406; //Значение .map__pin--main{top: 375px}  + половина высоты .map__pin--main{heigth: 62/2 = 31}
+var ORIGINAL_MAIN_PIN_X = 601; // Значение .map__pin--main{left: 570px}  + половина ширины .map__pin--main img{width: 62/2 = 31}
+var ORIGINAL_MAIN_PIN_Y = 406; // Значение .map__pin--main{top: 375px}  + половина высоты .map__pin--main{heigth: 62/2 = 31}
 var MAIN_PIN_HALFWIDTH = 31;
 var MAIN_PIN_HEIGTH = 84;
 
@@ -31,7 +31,6 @@ var roomNumber = adForm.querySelector('#room_number');
 var capacity = adForm.querySelector('#capacity');
 var titleField = adForm.querySelector('#title');
 var priceField = adForm.querySelector('#price');
-var submitButton = adForm.querySelector('.ad-form__submit');
 
 var getRandomElement = function (arr) {
   var index = Math.floor(Math.random() * arr.length);
@@ -186,9 +185,9 @@ var renderPins = function (dataList) {
   similarPinList.appendChild(fragment);
 };
 
-var renderCard = function (data) {
-  similarCardList.insertBefore(createCard(data), document.querySelector('.map__filters-container'));
-};
+// var renderCard = function (data) {
+//   similarCardList.insertBefore(createCard(data), document.querySelector('.map__filters-container'));
+// };
 
 var changeDisabledAttribute = function (arr, flag) {
   if (flag) {
@@ -206,7 +205,7 @@ var activatePage = function () {
   adFormHeader.disabled = false;
   mapFiltersForm.disabled = false;
   changeDisabledAttribute(adFormElements, false);
-  changeDisabledAttribute( mapFiltersElements, false);
+  changeDisabledAttribute(mapFiltersElements, false);
   adForm.classList.remove('ad-form--disabled');
   similarCardList.classList.remove('map--faded');
   renderPins(cards);
@@ -214,8 +213,8 @@ var activatePage = function () {
 };
 
 var getСoordinates = function () {
-  var pointX = Math.floor(parseInt(mapMainPin.style.left.replace('px', '')) + MAIN_PIN_HALFWIDTH);
-  var pointY = Math.floor(parseInt(mapMainPin.style.top.replace('px', '')) + MAIN_PIN_HEIGTH);
+  var pointX = Math.floor(parseInt(mapMainPin.style.left.replace('px', ''), 10) + MAIN_PIN_HALFWIDTH);
+  var pointY = Math.floor(parseInt(mapMainPin.style.top.replace('px', ''), 10) + MAIN_PIN_HEIGTH);
   return [pointX, pointY];
 };
 
@@ -260,7 +259,7 @@ document.addEventListener('click', function () { // подразумеваетс
   checkFieldsConstraints();
 });
 
-titleField.addEventListener('invalid', function (evt) {
+titleField.addEventListener('invalid', function () {
   if (titleField.validity.tooShort) {
     titleField.setCustomValidity('Заголовок должно состоять минимум из 15 символов');
   } else if (titleField.validity.tooLong) {
@@ -272,7 +271,7 @@ titleField.addEventListener('invalid', function (evt) {
   }
 });
 
-priceField.addEventListener('invalid', function (evt) {
+priceField.addEventListener('invalid', function () {
   if (priceField.validity.rangeUnderflow) {
     priceField.setCustomValidity('Минимальная цена 1000');
   } else {
