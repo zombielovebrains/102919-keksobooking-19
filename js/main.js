@@ -18,7 +18,7 @@ var MAIN_PIN_HEIGTH = 84;
 
 var similarPinList = document.querySelector('.map__pins');
 var similarCardList = document.querySelector('.map');
-var similarCardTemplate = document.querySelector('#card').content.querySelector('.map__card');
+// var similarCardTemplate = document.querySelector('#card').content.querySelector('.map__card');
 var similarPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 var adForm = document.querySelector('.ad-form');
 var adFormHeader = adForm.querySelector('.ad-form-header');
@@ -108,38 +108,38 @@ var createDataList = function () { // Заполняем массив объек
   return dataList;
 };
 
-var createPhotoElement = function (src) {
-  var elem = document.createElement('img');
-  elem.src = src;
-  elem.classList.add('popup__photo');
-  elem.alt = 'Фотография жилья';
-  elem.width = PHOTO_WIDTH;
-  elem.height = PHOTO_HEIGHT;
-  return elem;
-};
+// var createPhotoElement = function (src) {
+//   var elem = document.createElement('img');
+//   elem.src = src;
+//   elem.classList.add('popup__photo');
+//   elem.alt = 'Фотография жилья';
+//   elem.width = PHOTO_WIDTH;
+//   elem.height = PHOTO_HEIGHT;
+//   return elem;
+// };
 
-var generatePhotoFragment = function (photos) {
-  var fragment = document.createDocumentFragment();
-  for (var i = 0; i < photos.length; i++) {
-    fragment.appendChild(createPhotoElement(photos[i]));
-  }
-  return fragment;
-};
-
-var createFeatureElement = function (feature) {
-  var elem = document.createElement('li');
-  elem.classList.add('popup__feature');
-  elem.classList.add('popup__feature--' + feature);
-  return elem;
-};
-
-var generateFeatureFragment = function (features) {
-  var fragment = document.createDocumentFragment();
-  for (var i = 0; i < features.length; i++) {
-    fragment.appendChild(createFeatureElement(features[i]));
-  }
-  return fragment;
-};
+// var generatePhotoFragment = function (photos) {
+//   var fragment = document.createDocumentFragment();
+//   for (var i = 0; i < photos.length; i++) {
+//     fragment.appendChild(createPhotoElement(photos[i]));
+//   }
+//   return fragment;
+// };
+//
+// var createFeatureElement = function (feature) {
+//   var elem = document.createElement('li');
+//   elem.classList.add('popup__feature');
+//   elem.classList.add('popup__feature--' + feature);
+//   return elem;
+// };
+//
+// var generateFeatureFragment = function (features) {
+//   var fragment = document.createDocumentFragment();
+//   for (var i = 0; i < features.length; i++) {
+//     fragment.appendChild(createFeatureElement(features[i]));
+//   }
+//   return fragment;
+// };
 
 // var createCard = function (data) { // Заполняем шаблон объявления данными из объекта
 //   var cardElement = similarCardTemplate.cloneNode(true);
