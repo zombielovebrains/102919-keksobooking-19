@@ -8,7 +8,7 @@ var PIN_HALFWIDTH = 25;
 var PIN_HEIGHT = 70;
 var PHOTO_WIDTH = 45;
 var PHOTO_HEIGHT = 40;
-var MAX_X = Math.floor(document.querySelector('.map').offsetWidth) - PIN_HALFWIDTH;
+var MAX_X = Math.floor(document.querySelector('.map').offsetWidth);
 var LEFT_MOUSE_BUTTON = 0;
 var ENTER_CODE = 13;
 var ORIGINAL_MAIN_PIN_X = 601; //Значение .map__pin--main{left: 570px}  + половина ширины .map__pin--main img{width: 62/2 = 31}
@@ -23,12 +23,15 @@ var similarPinTemplate = document.querySelector('#pin').content.querySelector('.
 var adForm = document.querySelector('.ad-form');
 var adFormHeader = adForm.querySelector('.ad-form-header');
 var adFormElements = adForm.querySelectorAll('.ad-form__element');
-var mapFiltersForm = similarCardList.querySelector('.map__filters')
-var mapFiltersElements = mapFiltersForm.children;
+var mapFiltersForm = similarCardList.querySelector('.map__filters');
+var mapFiltersElements = Array.from(mapFiltersForm.children);
 var mapMainPin = similarPinList.querySelector('.map__pin--main');
 var addressField = adForm.querySelector('#address');
 var roomNumber = adForm.querySelector('#room_number');
 var capacity = adForm.querySelector('#capacity');
+var titleField = adForm.querySelector('#title');
+var priceField = adForm.querySelector('#price');
+var submitButton = adForm.querySelector('.ad-form__submit');
 
 var getRandomElement = function (arr) {
   var index = Math.floor(Math.random() * arr.length);
@@ -65,7 +68,7 @@ var createRandomLengthArray = function (arr) { // Массив рандомно�
 
 var createData = function (counter) { // Создаем объект с рандомными данными
   var location = {
-    x: getRandomInt(-PIN_HALFWIDTH, MAX_X),
+    x: getRandomInt(PIN_HALFWIDTH, MAX_X),
     y: getRandomInt(130 - PIN_HEIGHT, 630 - PIN_HEIGHT)
   };
 
@@ -187,67 +190,92 @@ var renderCard = function (data) {
   similarCardList.insertBefore(createCard(data), document.querySelector('.map__filters-container'));
 };
 
-var setDisableAttribute = function (array) {
-  for (var i = 0; i < array.length; i++) {
-    array[i].setAttribute("disabled", "true");
+var changeDisabledAttribute = function (arr, flag) {
+  if (flag) {
+    arr.forEach(function (item) {
+      item.disabled = true;
+    });
+  } else {
+    arr.forEach(function (item) {
+      item.disabled = false;
+    });
   }
 };
 
-var removeDisableAttribute = function (array) {
-  for (var i = 0; i < array.length; i++) {
-    array[i].removeAttribute("disabled");
-  }
-};
-
-var activateForms = function () {
-  adFormHeader.removeAttribute('disabled');
-  mapFiltersForm.removeAttribute('disabled');
-  removeDisableAttribute(adFormElements);
-  removeDisableAttribute( mapFiltersElements);
+var activatePage = function () {
+  adFormHeader.disabled = false;
+  mapFiltersForm.disabled = false;
+  changeDisabledAttribute(adFormElements, false);
+  changeDisabledAttribute( mapFiltersElements, false);
   adForm.classList.remove('ad-form--disabled');
   similarCardList.classList.remove('map--faded');
   renderPins(cards);
+  setAddress(getСoordinates());
 };
 
-var setAdress = function () {
+var getСoordinates = function () {
   var pointX = Math.floor(parseInt(mapMainPin.style.left.replace('px', '')) + MAIN_PIN_HALFWIDTH);
-  var pointY = Math.floor(parseInt(mapMainPin.style.left.replace('px', '')) + MAIN_PIN_HEIGTH);
-  addressField.value = pointX + ', ' + pointY;
+  var pointY = Math.floor(parseInt(mapMainPin.style.top.replace('px', '')) + MAIN_PIN_HEIGTH);
+  return [pointX, pointY];
 };
 
-adFormHeader.setAttribute('disabled', 'true');
-mapFiltersForm.setAttribute('disabled', 'true');
-setDisableAttribute(adFormElements);
-setDisableAttribute( mapFiltersElements);
-addressField.setAttribute('readonly', 'true');
+var setAddress = function (arr) {
+  addressField.value = arr[0] + ', ' + arr[1];
+};
+
+adFormHeader.disabled = true;
+mapFiltersForm.disabled = true;
+changeDisabledAttribute(adFormElements, true);
+changeDisabledAttribute(mapFiltersElements, true);
+addressField.readOnly = true;
 addressField.value = ORIGINAL_MAIN_PIN_X + ', ' + ORIGINAL_MAIN_PIN_Y;
 
 mapMainPin.addEventListener('mousedown', function (evt) {
   if (evt.button === LEFT_MOUSE_BUTTON) {
-    activateForms();
-    setAdress();
+    activatePage();
   }
 });
 
 mapMainPin.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_CODE) {
-    activateForms();
-    setAdress();
+    activatePage();
   }
 });
 
 var checkFieldsConstraints = function () {
-  if (roomNumber.value === 1 && capacity.value !== 1) {
+  if (roomNumber.value === '1' && capacity.value !== '1') {
     capacity.setCustomValidity('1 комната — «для 1 гостя»');
-  } else if (roomNumber.value === 2 && (capacity.value !== 1 || capacity.value !== 2) ) {
+  } else if (roomNumber.value === '2' && (capacity.value !== '1' || capacity.value !== '2')) {
     capacity.setCustomValidity('2 комнаты — «для 2 гостей» или «для 1 гостя»');
-  } else if (roomNumber.value === 3 && capacity.value === 0) {
+  } else if (roomNumber.value === '3' && capacity.value === '0') {
     capacity.setCustomValidity('3 комнаты — «для 3 гостей», «для 2 гостей» или «для 1 гостя»');
-  } else if (roomNumber.value === 0 && capacity.value !== 0) {
+  } else if (roomNumber.value === '0' && capacity.value !== '0') {
     capacity.setCustomValidity('100 комнат — «не для гостей»');
+  } else {
+    capacity.setCustomValidity('');
   }
 };
 
-capacity.addEventListener('change', function () {
+document.addEventListener('click', function () { // подразумевается, что я использую перехват события, что сразу получить значения roomNumber и capacity
   checkFieldsConstraints();
+});
+
+titleField.addEventListener('invalid', function (evt) {
+  if (titleField.validity.tooShort) {
+    titleField.setCustomValidity('Заголовок должно состоять минимум из 15 символов');
+  } else if (titleField.validity.tooLong) {
+    titleField.setCustomValidity('Заголовок не должен превышать 50 символов');
+  } else if (titleField.validity.valueMissing) {
+    titleField.setCustomValidity('Обязательное поле');
+  } else {
+    titleField.setCustomValidity('');
+  }
+});
+
+priceField.addEventListener('invalid', function (evt) {
+  if (priceField.validity.rangeUnderflow) {
+    priceField.setCustomValidity('Минимальная цена 1000');
+  } else {
+    priceField.setCustomValidity('');
+  }
 });
