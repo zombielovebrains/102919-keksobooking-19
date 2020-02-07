@@ -11,8 +11,8 @@ var PIN_HEIGHT = 70;
 var MAX_X = Math.floor(document.querySelector('.map').offsetWidth);
 var LEFT_MOUSE_BUTTON = 0;
 var ENTER_CODE = 13;
-var ORIGINAL_MAIN_PIN_X = 601; // Значение .map__pin--main{left: 570px}  + половина ширины .map__pin--main img{width: 62/2 = 31}
-var ORIGINAL_MAIN_PIN_Y = 406; // Значение .map__pin--main{top: 375px}  + половина высоты .map__pin--main{heigth: 62/2 = 31}
+var DISABLED_MAIN_PIN_HALFWIDTH = 31;
+var DISABLED_MAIN_PIN_HEIGTH = 31;
 var MAIN_PIN_HALFWIDTH = 31;
 var MAIN_PIN_HEIGTH = 84;
 
@@ -31,6 +31,7 @@ var roomNumber = adForm.querySelector('#room_number');
 var capacity = adForm.querySelector('#capacity');
 var titleField = adForm.querySelector('#title');
 var priceField = adForm.querySelector('#price');
+var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
 
 var getRandomElement = function (arr) {
   var index = Math.floor(Math.random() * arr.length);
@@ -190,20 +191,12 @@ var renderPins = function (dataList) {
 // };
 
 var changeDisabledAttribute = function (arr, flag) {
-  if (flag) {
-    arr.forEach(function (item) {
-      item.disabled = true;
-    });
-  } else {
-    arr.forEach(function (item) {
-      item.disabled = false;
-    });
-  }
+  arr.forEach(function (item) {
+    item.disabled = flag;
+  });
 };
 
 var activatePage = function () {
-  adFormHeader.disabled = false;
-  mapFiltersForm.disabled = false;
   changeDisabledAttribute(adFormElements, false);
   changeDisabledAttribute(mapFiltersElements, false);
   adForm.classList.remove('ad-form--disabled');
@@ -212,22 +205,29 @@ var activatePage = function () {
   setAddress(getСoordinates());
 };
 
+var deactivatePage = function () {
+  addressField.readOnly = true;
+  changeDisabledAttribute(adFormElements, true);
+  changeDisabledAttribute(mapFiltersElements, true);
+  setAddress(getСoordinates());
+};
+
 var getСoordinates = function () {
-  var pointX = Math.floor(parseInt(mapMainPin.style.left.replace('px', ''), 10) + MAIN_PIN_HALFWIDTH);
-  var pointY = Math.floor(parseInt(mapMainPin.style.top.replace('px', ''), 10) + MAIN_PIN_HEIGTH);
+  var pointX;
+  var pointY;
+  if (adForm.classList.contains('ad-form--disabled')) {
+    pointX = Math.floor(parseInt(mapMainPin.style.left, 10) + DISABLED_MAIN_PIN_HALFWIDTH);
+    pointY = Math.floor(parseInt(mapMainPin.style.top, 10) + DISABLED_MAIN_PIN_HEIGTH);
+  } else {
+    pointX = Math.floor(parseInt(mapMainPin.style.left, 10) + MAIN_PIN_HALFWIDTH);
+    pointY = Math.floor(parseInt(mapMainPin.style.top, 10) + MAIN_PIN_HEIGTH);
+  }
   return [pointX, pointY];
 };
 
 var setAddress = function (arr) {
   addressField.value = arr[0] + ', ' + arr[1];
 };
-
-adFormHeader.disabled = true;
-mapFiltersForm.disabled = true;
-changeDisabledAttribute(adFormElements, true);
-changeDisabledAttribute(mapFiltersElements, true);
-addressField.readOnly = true;
-addressField.value = ORIGINAL_MAIN_PIN_X + ', ' + ORIGINAL_MAIN_PIN_Y;
 
 mapMainPin.addEventListener('mousedown', function (evt) {
   if (evt.button === LEFT_MOUSE_BUTTON) {
@@ -248,14 +248,14 @@ var checkFieldsConstraints = function () {
     capacity.setCustomValidity('2 комнаты — «для 2 гостей» или «для 1 гостя»');
   } else if (roomNumber.value === '3' && capacity.value === '0') {
     capacity.setCustomValidity('3 комнаты — «для 3 гостей», «для 2 гостей» или «для 1 гостя»');
-  } else if (roomNumber.value === '0' && capacity.value !== '0') {
+  } else if (roomNumber.value === '100' && capacity.value !== '0') {
     capacity.setCustomValidity('100 комнат — «не для гостей»');
   } else {
     capacity.setCustomValidity('');
   }
 };
 
-document.addEventListener('click', function () { // подразумевается, что я использую перехват события, что сразу получить значения roomNumber и capacity
+adFormSubmitButton.addEventListener('click', function (evt) {
   checkFieldsConstraints();
 });
 
@@ -278,3 +278,5 @@ priceField.addEventListener('invalid', function () {
     priceField.setCustomValidity('');
   }
 });
+
+deactivatePage();
