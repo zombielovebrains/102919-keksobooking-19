@@ -21,7 +21,6 @@ var similarCardList = document.querySelector('.map');
 // var similarCardTemplate = document.querySelector('#card').content.querySelector('.map__card');
 var similarPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 var adForm = document.querySelector('.ad-form');
-var adFormHeader = adForm.querySelector('.ad-form-header');
 var adFormElements = adForm.querySelectorAll('.ad-form__element');
 var mapFiltersForm = similarCardList.querySelector('.map__filters');
 var mapFiltersElements = Array.from(mapFiltersForm.children);
@@ -30,7 +29,7 @@ var addressField = adForm.querySelector('#address');
 var roomNumber = adForm.querySelector('#room_number');
 var capacity = adForm.querySelector('#capacity');
 var titleField = adForm.querySelector('#title');
-var priceField = adForm.querySelector('#price');
+// var priceField = adForm.querySelector('#price');
 var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
 
 var getRandomElement = function (arr) {
@@ -255,7 +254,7 @@ var checkFieldsConstraints = function () {
   }
 };
 
-adFormSubmitButton.addEventListener('click', function (evt) {
+adFormSubmitButton.addEventListener('click', function () {
   checkFieldsConstraints();
 });
 
