@@ -271,12 +271,4 @@ titleField.addEventListener('invalid', function () {
   }
 });
 
-priceField.addEventListener('invalid', function () {
-  if (priceField.validity.rangeUnderflow) {
-    priceField.setCustomValidity('Минимальная цена 1000');
-  } else {
-    priceField.setCustomValidity('');
-  }
-});
-
 deactivatePage();
