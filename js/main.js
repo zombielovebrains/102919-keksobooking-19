@@ -11,7 +11,6 @@ var PIN_HEIGHT = 70;
 var MAX_X = Math.floor(document.querySelector('.map').offsetWidth);
 var LEFT_MOUSE_BUTTON = 0;
 var ENTER_CODE = 13;
-var DISABLED_MAIN_PIN_HALFWIDTH = 31;
 var DISABLED_MAIN_PIN_HEIGTH = 31;
 var MAIN_PIN_HALFWIDTH = 31;
 var MAIN_PIN_HEIGTH = 84;
@@ -205,20 +204,17 @@ var activatePage = function () {
 };
 
 var deactivatePage = function () {
-  addressField.readOnly = true;
   changeDisabledAttribute(adFormElements, true);
   changeDisabledAttribute(mapFiltersElements, true);
   setAddress(getСoordinates());
 };
 
 var getСoordinates = function () {
-  var pointX;
+  var pointX = Math.floor(parseInt(mapMainPin.style.left, 10) + MAIN_PIN_HALFWIDTH);
   var pointY;
   if (adForm.classList.contains('ad-form--disabled')) {
-    pointX = Math.floor(parseInt(mapMainPin.style.left, 10) + DISABLED_MAIN_PIN_HALFWIDTH);
     pointY = Math.floor(parseInt(mapMainPin.style.top, 10) + DISABLED_MAIN_PIN_HEIGTH);
   } else {
-    pointX = Math.floor(parseInt(mapMainPin.style.left, 10) + MAIN_PIN_HALFWIDTH);
     pointY = Math.floor(parseInt(mapMainPin.style.top, 10) + MAIN_PIN_HEIGTH);
   }
   return [pointX, pointY];
