@@ -12,7 +12,6 @@ var PHOTO_WIDTH = 45;
 var PHOTO_HEIGHT = 40;
 var MAX_X = Math.floor(document.querySelector('.map').offsetWidth) - PIN_HALFWIDTH;
 var LEFT_MOUSE_BUTTON = 0;
-var ENTER_CODE = 13;
 var DISABLED_MAIN_PIN_HEIGTH = 31;
 var MAIN_PIN_HALFWIDTH = 31;
 var MAIN_PIN_HEIGTH = 84;
@@ -179,10 +178,10 @@ var createPin = function (data) {
 var cards = createDataList();
 
 var hideCard = function () {
-  var cards = similarCardList.querySelectorAll('.map__card');
-  for (var i = 0; i < cards.length; i++) {
-    if (!cards[i].classList.contains('visually-hidden')) {
-      cards[i].classList.add('visually-hidden');
+  var renderedCards = similarCardList.querySelectorAll('.map__card');
+  for (var i = 0; i < renderedCards.length; i++) {
+    if (!renderedCards[i].classList.contains('visually-hidden')) {
+      renderedCards[i].classList.add('visually-hidden');
     }
   }
 };
@@ -229,7 +228,6 @@ var renderCard = function (data, pinId) {
 var renderPins = function (dataList) {
   var fragment = document.createDocumentFragment();
   var pin;
-  var pinCount;
 
   for (var i = 0; i < dataList.length; i++) {
     pin = createPin(dataList[i]);
@@ -237,7 +235,7 @@ var renderPins = function (dataList) {
     fragment.appendChild(pin);
     renderCard(dataList[i], pin.id);
 
-    pin.addEventListener('click', function (evt) {
+    pin.addEventListener('click', function () {
       displayCard(this.getAttribute('id'));
     });
   }
@@ -308,11 +306,11 @@ var checkCapacityField = function () {
 };
 
 var checkFlatTypeField = function () {
-  if (flatType.value === 'flat' && parseInt(priceField.value) < 1000) {
+  if (flatType.value === 'flat' && parseInt(priceField.value, 10) < 1000) {
     flatType.setCustomValidity('«Квартира» — минимальная цена за ночь 1 000');
-  } else if (flatType.value === 'house' && parseInt(priceField.value) < 5000) {
+  } else if (flatType.value === 'house' && parseInt(priceField.value, 10) < 5000) {
     flatType.setCustomValidity('«Дом» — минимальная цена 5 000');
-  } else if (flatType.value === 'palace' && parseInt(priceField.value) < 10000) {
+  } else if (flatType.value === 'palace' && parseInt(priceField.value, 10) < 10000) {
     flatType.setCustomValidity('«Дворец» — минимальная цена 10 000');
   } else {
     flatType.setCustomValidity('');
@@ -343,7 +341,5 @@ timeInField.addEventListener('change', function () {
 timeOutField.addEventListener('change', function () {
   timeInField.value = timeOutField.value;
 });
-
-
 
 deactivatePage();
