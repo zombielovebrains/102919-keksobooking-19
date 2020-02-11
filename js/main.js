@@ -235,8 +235,8 @@ var renderPins = function (dataList) {
     fragment.appendChild(pin);
     renderCard(dataList[i], pin.id);
 
-    pin.addEventListener('click', function () {
-      displayCard(this.getAttribute('id'));
+    pin.addEventListener('click', function (evt) {
+      displayCard(evt.currentTarget.getAttribute('id'));
     });
   }
 
