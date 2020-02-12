@@ -177,35 +177,25 @@ var createPin = function (data) {
 
 var cards = createDataList();
 
-var hideCard = function () {
-  var renderedCards = similarCardList.querySelectorAll('.map__card');
-  for (var i = 0; i < renderedCards.length; i++) {
-    if (!renderedCards[i].classList.contains('visually-hidden')) {
-      renderedCards[i].classList.add('visually-hidden');
-    }
-  }
-};
-
 var keyEscCloseHandler = function (evt) {
   if (evt.keyCode === ESC_CODE) {
     closeCard();
   }
 };
 
-var openCard = function (card) {
-  card.classList.remove('visually-hidden');
-  document.addEventListener('keydown', keyEscCloseHandler);
-};
-
 var closeCard = function () {
-  hideCard();
+  similarCardList.querySelector('.map__card').remove();
   document.removeEventListener('keydown', keyEscCloseHandler);
 };
 
-var displayCard = function (pinId) {
-  var card = similarCardList.querySelector('#' + pinId + '-card');
-  hideCard();
-  openCard(card);
+var renderCard = function (data) {
+  var card = createCard(data);
+  if (similarCardList.querySelector('.map__card') !== null) {
+    similarCardList.querySelector('.map__card').remove();
+  }
+  similarCardList.insertBefore(card, document.querySelector('.map__filters-container'));
+
+  document.addEventListener('keydown', keyEscCloseHandler);
 
   card.querySelector('.popup__close').addEventListener('click', function () {
     closeCard();
@@ -218,28 +208,18 @@ var displayCard = function (pinId) {
   });
 };
 
-var renderCard = function (data, pinId) {
-  var card = createCard(data);
-  card.id = pinId + '-card';
-  card.classList.add('visually-hidden');
-  similarCardList.insertBefore(card, document.querySelector('.map__filters-container'));
-};
-
 var renderPins = function (dataList) {
   var fragment = document.createDocumentFragment();
   var pin;
-
-  for (var i = 0; i < dataList.length; i++) {
-    pin = createPin(dataList[i]);
-    pin.id = 'pin' + i;
+  dataList.forEach(function (item) {
+    pin = createPin(item);
+    var data = item;
     fragment.appendChild(pin);
-    renderCard(dataList[i], pin.id);
 
-    pin.addEventListener('click', function (evt) {
-      displayCard(evt.currentTarget.getAttribute('id'));
+    pin.addEventListener('click', function () {
+      renderCard(data);
     });
-  }
-
+  });
   similarPinList.appendChild(fragment);
 };
 
