@@ -190,8 +190,10 @@ var closeCard = function () {
 
 var renderCard = function (data) {
   var card = createCard(data);
-  if (similarCardList.querySelector('.map__card') !== null) {
-    similarCardList.querySelector('.map__card').remove();
+  var openedCard = similarCardList.querySelector('.map__card')
+
+  if (openedCard !== null) {
+      openedCard.remove();
   }
   similarCardList.insertBefore(card, document.querySelector('.map__filters-container'));
 
@@ -200,19 +202,12 @@ var renderCard = function (data) {
   card.querySelector('.popup__close').addEventListener('click', function () {
     closeCard();
   });
-
-  card.querySelector('.popup__close').addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_CODE || evt.keyCode === ESC_CODE) {
-      closeCard();
-    }
-  });
 };
 
 var renderPins = function (dataList) {
   var fragment = document.createDocumentFragment();
-  var pin;
   dataList.forEach(function (item) {
-    pin = createPin(item);
+    var pin = createPin(item);
     var data = item;
     fragment.appendChild(pin);
 
