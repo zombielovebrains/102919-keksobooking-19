@@ -190,10 +190,10 @@ var closeCard = function () {
 
 var renderCard = function (data) {
   var card = createCard(data);
-  var openedCard = similarCardList.querySelector('.map__card')
+  var openedCard = similarCardList.querySelector('.map__card');
 
   if (openedCard !== null) {
-      openedCard.remove();
+    openedCard.remove();
   }
   similarCardList.insertBefore(card, document.querySelector('.map__filters-container'));
 
