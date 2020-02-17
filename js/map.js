@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
   var DISABLED_MAIN_PIN_HEIGTH = 31;
   var MAIN_PIN_HALFWIDTH = 31;

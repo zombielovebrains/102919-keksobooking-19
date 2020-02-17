@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
   var FLAT_TYPE = ['palace', 'flat', 'house', 'bungalo'];
   var CHECK_TIME = ['12:00', '13:00', '14:00'];

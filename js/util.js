@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
   var getRandomElement = function (arr) {
     var index = Math.floor(Math.random() * arr.length);

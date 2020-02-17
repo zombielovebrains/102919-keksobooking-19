@@ -1,4 +1,6 @@
-(function (){
+'use strict';
+
+(function () {
   var PHOTO_WIDTH = 45;
   var PHOTO_HEIGHT = 40;
   var similarCardTemplate = document.querySelector('#card').content.querySelector('.map__card');

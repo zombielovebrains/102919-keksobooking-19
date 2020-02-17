@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
   var PIN_HALFWIDTH = 25;
   var PIN_HEIGHT = 70;
