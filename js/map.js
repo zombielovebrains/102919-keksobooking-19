@@ -9,7 +9,6 @@
   var LEFT_MOUSE_BUTTON = 0;
   var similarCardList = document.querySelector('.map');
   var similarPinList = document.querySelector('.map__pins');
-  var adForm = document.querySelector('.ad-form');
   var mapFiltersForm = similarCardList.querySelector('.map__filters');
   var mapFiltersElements = Array.from(mapFiltersForm.children);
   var mapMainPin = document.querySelector('.map__pin--main');
@@ -59,7 +58,7 @@
   var getСoordinates = function () {
     var pointX = Math.floor(parseInt(mapMainPin.style.left, 10) + MAIN_PIN_HALFWIDTH);
     var pointY;
-    if (adForm.classList.contains('ad-form--disabled')) {
+    if (similarCardList.classList.contains('map--faded')) {
       pointY = Math.floor(parseInt(mapMainPin.style.top, 10) + DISABLED_MAIN_PIN_HEIGTH);
     } else {
       pointY = Math.floor(parseInt(mapMainPin.style.top, 10) + MAIN_PIN_HEIGTH);
