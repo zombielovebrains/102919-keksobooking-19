@@ -4,7 +4,6 @@
   var PHOTO_WIDTH = 45;
   var PHOTO_HEIGHT = 40;
   var similarCardTemplate = document.querySelector('#card').content.querySelector('.map__card');
-  var similarCardList = document.querySelector('.map');
 
   var createPhotoElement = function (src) {
     var elem = document.createElement('img');
@@ -60,23 +59,5 @@
     return cardElement;
   };
 
-  var renderCard = function (data) {
-    var card = createCard(data);
-    var openedCard = similarCardList.querySelector('.map__card');
-
-    if (openedCard !== null) {
-      openedCard.remove();
-    }
-    similarCardList.insertBefore(card, document.querySelector('.map__filters-container'));
-
-    document.addEventListener('keydown', window.closeEvent.keyEsc);
-
-    card.querySelector('.popup__close').addEventListener('click', function () {
-      window.closeEvent.card();
-    });
-  };
-
-  window.card = {
-    render: renderCard
-  };
+  window.card = createCard;
 })();

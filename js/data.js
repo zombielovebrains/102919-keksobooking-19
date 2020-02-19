@@ -11,8 +11,8 @@
 
   var createData = function (counter) { // Создаем объект с рандомными данными
     var location = {
-      x: window.util.randomInt(PIN_HALFWIDTH, MAX_X),
-      y: window.util.randomInt(130 - PIN_HEIGHT, 630 - PIN_HEIGHT)
+      x: window.util.getRandomInt(PIN_HALFWIDTH, MAX_X),
+      y: window.util.getRandomInt(130 - PIN_HEIGHT, 630 - PIN_HEIGHT)
     };
 
     var data = {
@@ -26,17 +26,17 @@
       },
 
       offer: {
-        title: window.util.randomString(10),
+        title: window.util.getRandomString(10),
         address: location.x + ', ' + location.y,
-        price: window.util.randomInt(500, 1500),
-        type: window.util.randomElement(FLAT_TYPE),
-        rooms: window.util.randomInt(1, 5),
-        quests: window.util.randomInt(1, 10),
-        checkin: window.util.randomElement(CHECK_TIME),
-        checkout: window.util.randomElement(CHECK_TIME),
-        features: window.util.randomLengthArray(FEATURES),
-        description: window.util.randomString(10),
-        photos: window.util.randomLengthArray(['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'])
+        price: window.util.getRandomInt(500, 1500),
+        type: window.util.getRandomElement(FLAT_TYPE),
+        rooms: window.util.getRandomInt(1, 5),
+        quests: window.util.getRandomInt(1, 10),
+        checkin: window.util.getRandomElement(CHECK_TIME),
+        checkout: window.util.getRandomElement(CHECK_TIME),
+        features: window.util.getRandomLengthArray(FEATURES),
+        description: window.util.getRandomString(10),
+        photos: window.util.getRandomLengthArray(['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'])
       }
     };
     return data;
@@ -51,8 +51,5 @@
     return dataList;
   };
 
-  window.data = {
-    item: createData,
-    itemList: createDataList
-  };
+  window.dataList = createDataList;
 })();

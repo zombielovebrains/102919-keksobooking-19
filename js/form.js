@@ -2,6 +2,7 @@
 
 (function () {
   var adForm = document.querySelector('.ad-form');
+  var adFormElements = adForm.querySelectorAll('.ad-form__element');
   var roomNumber = adForm.querySelector('#room_number');
   var flatType = adForm.querySelector('#type');
   var timeInField = adForm.querySelector('#timein');
@@ -9,7 +10,21 @@
   var capacity = adForm.querySelector('#capacity');
   var titleField = adForm.querySelector('#title');
   var priceField = adForm.querySelector('#price');
+  var addressField = adForm.querySelector('#address');
   var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
+
+  var setAddress = function (arr) {
+    addressField.value = arr[0] + ', ' + arr[1];
+  };
+
+  var disableForm = function () {
+    window.util.changeDisabledAttribute(adFormElements, true);
+  };
+
+  var enableForm = function () {
+    window.util.changeDisabledAttribute(adFormElements, false);
+    adForm.classList.remove('ad-form--disabled');
+  };
 
   var checkCapacityField = function () {
     if (roomNumber.value === '1' && capacity.value !== '1') {
@@ -61,4 +76,10 @@
     checkCapacityField();
     checkFlatTypeField();
   });
+
+  window.form = {
+    setAddress: setAddress,
+    disableForm: disableForm,
+    enableForm: enableForm
+  };
 })();

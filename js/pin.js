@@ -4,7 +4,6 @@
   var PIN_HALFWIDTH = 25;
   var PIN_HEIGHT = 70;
   var similarPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
-  var similarPinList = document.querySelector('.map__pins');
 
   var createPin = function (data) {
     var pinElement = similarPinTemplate.cloneNode(true);
@@ -16,21 +15,5 @@
     return pinElement;
   };
 
-  var renderPins = function (dataList) {
-    var fragment = document.createDocumentFragment();
-    dataList.forEach(function (item) {
-      var pin = createPin(item);
-      var data = item;
-      fragment.appendChild(pin);
-
-      pin.addEventListener('click', function () {
-        window.card.render(data);
-      });
-    });
-    similarPinList.appendChild(fragment);
-  };
-
-  window.pin = {
-    render: renderPins
-  };
+  window.pin = createPin;
 })();

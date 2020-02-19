@@ -40,10 +40,10 @@
   };
 
   window.util = {
-    randomElement: getRandomElement,
-    randomInt: getRandomInt,
-    randomString: getRandomString,
-    randomLengthArray: createRandomLengthArray,
-    disabledAttribute: changeDisabledAttribute
+    getRandomElement: getRandomElement,
+    getRandomInt: getRandomInt,
+    getRandomString: getRandomString,
+    getRandomLengthArray: createRandomLengthArray,
+    changeDisabledAttribute: changeDisabledAttribute
   };
 })();
