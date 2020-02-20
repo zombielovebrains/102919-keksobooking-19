@@ -15,5 +15,5 @@
     return pinElement;
   };
 
-  window.pin = createPin;
+  window.createPin = createPin;
 })();

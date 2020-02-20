@@ -59,5 +59,5 @@
     return cardElement;
   };
 
-  window.card = createCard;
+  window.createCard = createCard;
 })();

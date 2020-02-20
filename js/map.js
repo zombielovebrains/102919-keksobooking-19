@@ -26,7 +26,7 @@
   };
 
   var renderCard = function (data) {
-    var card = window.card(data);
+    var card = window.createCard(data);
     var openedCard = similarCardList.querySelector('.map__card');
 
     if (openedCard !== null) {
@@ -44,7 +44,7 @@
   var renderPins = function (dataList) {
     var fragment = document.createDocumentFragment();
     dataList.forEach(function (item) {
-      var pin = window.pin(item);
+      var pin = window.createPin(item);
       var data = item;
       fragment.appendChild(pin);
 
@@ -75,26 +75,26 @@
     similarCardList.classList.remove('map--faded');
   };
 
-  var activate = function (instruction) {
+  var setAction = function (callback) {
 
     mapMainPin.addEventListener('mousedown', function (evt) {
       if (evt.button === LEFT_MOUSE_BUTTON) {
-        instruction();
+        callback();
       }
     });
 
     mapMainPin.addEventListener('keydown', function (evt) {
       if (evt.keyCode === ENTER_CODE) {
-        instruction();
+        callback();
       }
     });
   };
 
   window.map = {
-    disableMap: disableMap,
-    enableMap: enableMap,
+    disable: disableMap,
+    enable: enableMap,
     getСoords: getСoordinates,
     renderPins: renderPins,
-    activate: activate
+    setAction: setAction
   };
 })();

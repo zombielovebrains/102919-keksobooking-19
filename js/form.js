@@ -79,7 +79,7 @@
 
   window.form = {
     setAddress: setAddress,
-    disableForm: disableForm,
-    enableForm: enableForm
+    disable: disableForm,
+    enable: enableForm
   };
 })();
