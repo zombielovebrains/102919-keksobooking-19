@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
   var LEFT_MOUSE_BUTTON = 0;
   var MAIN_PIN_HALFWIDTH = 33;
