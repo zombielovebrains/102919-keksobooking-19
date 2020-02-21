@@ -2,7 +2,7 @@
 
 (function () {
   var DISABLED_MAIN_PIN_HEIGTH = 31;
-  var MAIN_PIN_HALFWIDTH = 31;
+  var MAIN_PIN_HALFWIDTH = 33;
   var MAIN_PIN_HEIGTH = 84;
   var ENTER_CODE = 13;
   var ESC_CODE = 27;
