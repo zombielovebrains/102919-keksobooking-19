@@ -6,14 +6,15 @@
   var FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
   var PIN_HALFWIDTH = 25;
   var PIN_HEIGHT = 70;
+  var MIN_X = 0;
   var MAX_X = Math.floor(document.querySelector('.map__pins').offsetWidth) - PIN_HALFWIDTH;
-  var MIN_Y = 130;
-  var MAX_Y = 630;
+  var MIN_Y = 130 - PIN_HEIGHT;
+  var MAX_Y = 630 - PIN_HEIGHT;
   var DATA_COUNT = 8;
 
   var createData = function (counter) { // Создаем объект с рандомными данными
     var location = {
-      x: window.util.getRandomInt(0, MAX_X) + PIN_HALFWIDTH,
+      x: window.util.getRandomInt(MIN_X, MAX_X) + PIN_HALFWIDTH,
       y: window.util.getRandomInt(MIN_Y, MAX_Y) + PIN_HEIGHT
     };
 
@@ -55,8 +56,6 @@
 
   window.data = {
     createList: createDataList,
-    MAX_X: MAX_X,
-    MAX_Y: MAX_Y,
-    MIN_Y: MIN_Y
+    MIN_X: MIN_X
   };
 })();

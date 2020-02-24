@@ -95,6 +95,7 @@
     enable: enableMap,
     getСoords: getСoordinates,
     renderPins: renderPins,
-    setAction: setAction
+    setAction: setAction,
+    mainPin: mapMainPin
   };
 })();
