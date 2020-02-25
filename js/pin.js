@@ -7,8 +7,8 @@
 
   var createPin = function (data) {
     var pinElement = similarPinTemplate.cloneNode(true);
-    pinElement.style.left = data.location.x + PIN_HALFWIDTH + 'px';
-    pinElement.style.top = data.location.y + PIN_HEIGHT + 'px';
+    pinElement.style.left = data.location.x - PIN_HALFWIDTH + 'px';
+    pinElement.style.top = data.location.y - PIN_HEIGHT + 'px';
     pinElement.querySelector('img').src = data.author.avatar;
     pinElement.querySelector('img').alt = data.offer.title;
 

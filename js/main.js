@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  var cards = window.dataList();
+  var cards = window.data.createList();
 
   var deactivatePage = function () {
     window.map.disable();
