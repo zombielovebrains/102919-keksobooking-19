@@ -1,8 +1,6 @@
 'use strict';
 
 (function () {
-  var cards = window.data.createList();
-
   var deactivatePage = function () {
     window.map.disable();
     window.form.disable();
