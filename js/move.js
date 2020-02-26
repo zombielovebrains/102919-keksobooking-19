@@ -4,7 +4,7 @@
   var LEFT_MOUSE_BUTTON = 0;
   var MAIN_PIN_HALFWIDTH = 33;
   var MAIN_PIN_HEIGHT = 84;
-  var MIN_X = - MAIN_PIN_HALFWIDTH;
+  var MIN_X = -MAIN_PIN_HALFWIDTH;
   var MAX_X = Math.floor(document.querySelector('.map__pins').offsetWidth) - MAIN_PIN_HALFWIDTH;
   var MIN_Y = 130 - MAIN_PIN_HEIGHT;
   var MAX_Y = 630 - MAIN_PIN_HEIGHT;

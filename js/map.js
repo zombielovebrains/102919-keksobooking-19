@@ -56,7 +56,7 @@
   };
 
   var showError = function (errorInfo) {
-    alert(errorInfo);
+    console.log(errorInfo);
   };
 
   var getСoordinates = function () {
