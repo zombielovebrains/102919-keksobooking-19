@@ -12,7 +12,7 @@
   var activatePage = function () {
     window.map.enable();
     window.form.enable();
-    window.map.renderPins(cards);
+    window.download(window.map.renderPins, window.map.showError);
     window.form.setAddress(window.map.getСoords());
   };
 
