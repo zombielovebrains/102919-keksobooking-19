@@ -55,9 +55,6 @@
     similarPinList.appendChild(fragment);
   };
 
-  var showError = function (errorInfo) {
-    console.log(errorInfo);
-  };
 
   var getСoordinates = function () {
     var pointX = Math.floor(parseInt(mapMainPin.style.left, 10) + MAIN_PIN_HALFWIDTH);
@@ -100,7 +97,6 @@
     getСoords: getСoordinates,
     renderPins: renderPins,
     setAction: setAction,
-    mainPin: mapMainPin,
-    showError: showError
+    mainPin: mapMainPin
   };
 })();
