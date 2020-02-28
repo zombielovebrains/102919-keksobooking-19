@@ -16,4 +16,6 @@
 
   deactivatePage();
   window.map.setAction(activatePage);
+
+  window.deactivatePage = deactivatePage;
 })();

@@ -69,6 +69,7 @@
 
   var disableMap = function () {
     window.util.changeDisabledAttribute(mapFiltersElements, true);
+    similarCardList.classList.add('map--faded');
   };
 
   var enableMap = function () {
@@ -91,12 +92,22 @@
     });
   };
 
+  var deletePins = function () {
+    var pins = similarCardList.querySelectorAll('.map__pin');
+    pins.forEach(function (item) {
+      if (!item.classList.contains('map__pin--main')) {
+        similarPinList.removeChild(item);
+      }
+    });
+  };
+
   window.map = {
     disable: disableMap,
     enable: enableMap,
     getСoords: getСoordinates,
     renderPins: renderPins,
     setAction: setAction,
-    mainPin: mapMainPin
+    mainPin: mapMainPin,
+    deletePins: deletePins
   };
 })();
