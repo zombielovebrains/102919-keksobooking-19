@@ -55,6 +55,7 @@
     similarPinList.appendChild(fragment);
   };
 
+
   var getСoordinates = function () {
     var pointX = Math.floor(parseInt(mapMainPin.style.left, 10) + MAIN_PIN_HALFWIDTH);
     var pointY;

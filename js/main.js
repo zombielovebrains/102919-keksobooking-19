@@ -1,8 +1,6 @@
 'use strict';
 
 (function () {
-  var cards = window.data.createList();
-
   var deactivatePage = function () {
     window.map.disable();
     window.form.disable();
@@ -12,7 +10,7 @@
   var activatePage = function () {
     window.map.enable();
     window.form.enable();
-    window.map.renderPins(cards);
+    window.download(window.map.renderPins);
     window.form.setAddress(window.map.getСoords());
   };
 
