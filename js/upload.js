@@ -27,6 +27,8 @@
       onError();
     });
 
+    xhr.timeout = TIMEOUT_IN_MS;
+
     xhr.open('POST', URL);
     xhr.send(data);
   };
