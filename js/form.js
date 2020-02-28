@@ -73,7 +73,7 @@
     showMessage(errorMessageTemplate);
 
     // Зачем это делать если по клику произвольному сообщение все равно закрывается?
-    document.querySelector('.error__button').addEventListener('click', function () {
+    document.querySelector('.error__button').addEventListener('click', function (evt) {
       if (evt.button === LEFT_MOUSE_BUTTON) {
         closeMessage();
       }
