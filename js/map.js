@@ -108,6 +108,7 @@
     renderPins: renderPins,
     setAction: setAction,
     mainPin: mapMainPin,
-    deletePins: deletePins
+    deletePins: deletePins,
+    closeCard: closeCard
   };
 })();

@@ -1,8 +1,6 @@
 'use strict';
 
 (function () {
-  var ESC_CODE = 27;
-  var LEFT_MOUSE_BUTTON = 0;
   var adForm = document.querySelector('.ad-form');
   var adFormElements = adForm.querySelectorAll('.ad-form__element');
   var roomNumber = adForm.querySelector('#room_number');
@@ -14,9 +12,9 @@
   var priceField = adForm.querySelector('#price');
   var addressField = adForm.querySelector('#address');
   var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
+  var resetButton = adForm.querySelector('.ad-form__reset');
   var successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
   var errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
-  var resetButton = adForm.querySelector('.ad-form__reset');
 
 
   var setAddress = function (arr) {
@@ -33,53 +31,14 @@
     adForm.classList.remove('ad-form--disabled');
   };
 
-  var keyEscCloseHandler = function (evt) {
-    if (evt.keyCode === ESC_CODE) {
-      closeMessage();
-    }
-  };
-
-  var showMessage = function (messageTemplate) {
-    var messageElement = messageTemplate.cloneNode(true);
-    document.body.insertAdjacentElement('afterbegin', messageElement);
-
-    messageElement.addEventListener('mousedown', function (evt) {
-      if (evt.button === LEFT_MOUSE_BUTTON) {
-        closeMessage();
-      }
-    });
-
-    document.addEventListener('keydown', keyEscCloseHandler);
-  };
-
-  var closeMessage = function () {
-    if (document.querySelector('.success')) {
-      document.body.removeChild(document.querySelector('.success'));
-    } else if (document.querySelector('.error')) {
-      document.body.removeChild(document.querySelector('.error'));
-    }
-    document.removeEventListener('keydown', keyEscCloseHandler);
-  };
-
-
   var successSubmitHandler = function () {
     adForm.reset();
-    window.map.deletePins();
-    window.deactivatePage();
-    showMessage(successMessageTemplate);
+    window.message.show(successMessageTemplate);
   };
 
   var errorHandler = function () {
-    showMessage(errorMessageTemplate);
-
-    // Зачем это делать если по клику произвольному сообщение все равно закрывается?
-    document.querySelector('.error__button').addEventListener('click', function (evt) {
-      if (evt.button === LEFT_MOUSE_BUTTON) {
-        closeMessage();
-      }
-    });
+    window.message.show(errorMessageTemplate);
   };
-
 
   var checkCapacityField = function () {
     if (roomNumber.value === '1' && capacity.value !== '1') {
@@ -132,10 +91,12 @@
     checkFlatTypeField();
   });
 
-  adForm.addEventListener('submit', function (evt) {
-    window.upload(new FormData(adForm), successSubmitHandler, errorHandler);
-    evt.preventDefault();
-  });
+  var setAction = function (callbackFirst, callbackSecond) {
+    adForm.addEventListener('submit', function (evt) {
+      window.server.upload(new FormData(adForm), callbackFirst, callbackSecond);
+      evt.preventDefault();
+    });
+  };
 
   resetButton.addEventListener('click', function () {
     adForm.reset();
@@ -145,6 +106,9 @@
   window.form = {
     setAddress: setAddress,
     disable: disableForm,
-    enable: enableForm
+    enable: enableForm,
+    reset: successSubmitHandler,
+    showError: errorHandler,
+    setAction: setAction
   };
 })();

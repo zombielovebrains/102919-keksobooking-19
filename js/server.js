@@ -1,13 +1,12 @@
 'use strict';
 
 (function () {
-  var URL = 'https://js.dump.academy/keksobooking';
   var StatusCode = {
     OK: 200
   };
   var TIMEOUT_IN_MS = 10000;
 
-  window.upload = function (data, onSuccess, onError) {
+  var createRequest = function (onSuccess, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
@@ -29,7 +28,25 @@
 
     xhr.timeout = TIMEOUT_IN_MS;
 
+    return xhr;
+  };
+
+  var download = function (onSuccess) {
+    var URL = 'https://js.dump.academy/keksobooking/data';
+    var xhr = createRequest(onSuccess);
+    xhr.open('GET', URL);
+    xhr.send();
+  };
+
+  var upload = function (data, onSuccess, onError) {
+    var URL = 'https://js.dump.academy/keksobooking';
+    var xhr = createRequest(onSuccess, onError);
     xhr.open('POST', URL);
     xhr.send(data);
+  };
+
+  window.server = {
+    upload: upload,
+    download: download
   };
 })();
