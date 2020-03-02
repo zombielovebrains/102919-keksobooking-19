@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
   var ESC_CODE = 27;
   var LEFT_MOUSE_BUTTON = 0;
