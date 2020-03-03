@@ -10,23 +10,26 @@
   var activatePage = function () {
     window.map.enable();
     window.form.enable();
-    window.server.download(window.map.renderPins);
+    window.server.download(window.map.renderPins, unsuccessDownload);
     window.form.setAddress(window.map.getСoords());
   };
 
   var successSubmit = function () {
-    window.map.deletePins();
-    window.map.closeCard();
-    window.map.disable();
     deactivatePage();
-    window.form.reset();
+    window.message.showSuccess();
   };
 
-  var unsuccessSubmit = function () {
-    window.form.showError();
+  var unsuccessSubmit = function (errorMessage) {
+    window.message.showError(errorMessage);
+  };
+
+  var unsuccessDownload = function (errorMessage) {
+    window.message.showError(errorMessage);
+    deactivatePage();
   };
 
   deactivatePage();
   window.map.setAction(activatePage);
   window.form.setAction(successSubmit, unsuccessSubmit);
+  window.form.setReset(deactivatePage);
 })();

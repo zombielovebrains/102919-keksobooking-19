@@ -13,15 +13,13 @@
   var addressField = adForm.querySelector('#address');
   var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
   var resetButton = adForm.querySelector('.ad-form__reset');
-  var successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
-  var errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
-
 
   var setAddress = function (arr) {
     addressField.value = arr[0] + ', ' + arr[1];
   };
 
   var disableForm = function () {
+    adForm.reset();
     window.util.changeDisabledAttribute(adFormElements, true);
     adForm.classList.add('ad-form--disabled');
   };
@@ -29,15 +27,6 @@
   var enableForm = function () {
     window.util.changeDisabledAttribute(adFormElements, false);
     adForm.classList.remove('ad-form--disabled');
-  };
-
-  var successSubmitHandler = function () {
-    adForm.reset();
-    window.message.show(successMessageTemplate);
-  };
-
-  var errorHandler = function () {
-    window.message.show(errorMessageTemplate);
   };
 
   var checkCapacityField = function () {
@@ -98,17 +87,17 @@
     });
   };
 
-  resetButton.addEventListener('click', function () {
-    adForm.reset();
-    setAddress(window.map.getСoords());
-  });
+  var setReset = function (callback) {
+    resetButton.addEventListener('click', function () {
+      callback();
+    });
+  };
 
   window.form = {
     setAddress: setAddress,
     disable: disableForm,
     enable: enableForm,
-    reset: successSubmitHandler,
-    showError: errorHandler,
-    setAction: setAction
+    setAction: setAction,
+    setReset: setReset
   };
 })();

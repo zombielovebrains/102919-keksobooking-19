@@ -3,6 +3,8 @@
 (function () {
   var ESC_CODE = 27;
   var LEFT_MOUSE_BUTTON = 0;
+  var successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
+  var errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
 
   var keyEscCloseHandler = function (evt) {
     if (evt.keyCode === ESC_CODE) {
@@ -34,12 +36,22 @@
       document.body.removeChild(document.querySelector('.success'));
     } else if (document.querySelector('.error')) {
       document.body.removeChild(document.querySelector('.error'));
-      document.querySelector('.error__button').removeEventListener('click', mouseCloseHandler);
+      // document.querySelector('.error__button').removeEventListener('click', mouseCloseHandler);
     }
     document.removeEventListener('keydown', keyEscCloseHandler);
   };
 
+  var showSuccess = function () {
+    showMessage(successMessageTemplate);
+  };
+
+  var showError = function (errorMessage) {
+    showMessage(errorMessageTemplate);
+    document.querySelector('.error__message').textContent = errorMessage;
+  };
+
   window.message = {
-    show: showMessage
+    showSuccess: showSuccess,
+    showError: showError
   };
 })();

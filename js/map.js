@@ -21,7 +21,9 @@
   };
 
   var closeCard = function () {
-    similarCardList.querySelector('.map__card').remove();
+    if (similarCardList.querySelector('.map__card')) {
+      similarCardList.querySelector('.map__card').remove();
+    }
     document.removeEventListener('keydown', keyEscCloseHandler);
   };
 
@@ -70,6 +72,8 @@
   var disableMap = function () {
     window.util.changeDisabledAttribute(mapFiltersElements, true);
     similarCardList.classList.add('map--faded');
+    deletePins();
+    closeCard();
   };
 
   var enableMap = function () {
@@ -107,8 +111,6 @@
     getСoords: getСoordinates,
     renderPins: renderPins,
     setAction: setAction,
-    mainPin: mapMainPin,
-    deletePins: deletePins,
-    closeCard: closeCard
+    mainPin: mapMainPin
   };
 })();
