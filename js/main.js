@@ -10,7 +10,7 @@
   var activatePage = function () {
     window.map.enable();
     window.form.enable();
-    window.server.download(window.map.renderPins, unsuccessDownload);
+    window.server.download(successDownload, unsuccessDownload);
     window.form.setAddress(window.map.getСoords());
   };
 
@@ -21,6 +21,10 @@
 
   var unsuccessSubmit = function (errorMessage) {
     window.message.showError(errorMessage);
+  };
+
+  var successDownload = function () {
+    window.map.renderPins();
   };
 
   var unsuccessDownload = function (errorMessage) {
