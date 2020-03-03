@@ -23,8 +23,8 @@
     window.message.showError(errorMessage);
   };
 
-  var successDownload = function () {
-    window.map.renderPins();
+  var successDownload = function (data) {
+    window.map.renderPins(data);
   };
 
   var unsuccessDownload = function (errorMessage) {
