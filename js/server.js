@@ -39,7 +39,6 @@
   };
 
   var upload = function (data, onSuccess, onError) {
-    var URL = 'https://js.dump.academy/keksobooking';
     var xhr = createRequest(onSuccess, onError);
     xhr.open('POST', URLS[1]);
     xhr.send(data);
