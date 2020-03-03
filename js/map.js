@@ -21,7 +21,9 @@
   };
 
   var closeCard = function () {
-    similarCardList.querySelector('.map__card').remove();
+    if (similarCardList.querySelector('.map__card')) {
+      similarCardList.querySelector('.map__card').remove();
+    }
     document.removeEventListener('keydown', keyEscCloseHandler);
   };
 
@@ -69,6 +71,9 @@
 
   var disableMap = function () {
     window.util.changeDisabledAttribute(mapFiltersElements, true);
+    similarCardList.classList.add('map--faded');
+    deletePins();
+    closeCard();
   };
 
   var enableMap = function () {
@@ -87,6 +92,15 @@
     mapMainPin.addEventListener('keydown', function (evt) {
       if (evt.keyCode === ENTER_CODE) {
         callback();
+      }
+    });
+  };
+
+  var deletePins = function () {
+    var pins = similarCardList.querySelectorAll('.map__pin');
+    pins.forEach(function (item) {
+      if (!item.classList.contains('map__pin--main')) {
+        similarPinList.removeChild(item);
       }
     });
   };

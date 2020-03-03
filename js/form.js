@@ -12,13 +12,16 @@
   var priceField = adForm.querySelector('#price');
   var addressField = adForm.querySelector('#address');
   var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
+  var resetButton = adForm.querySelector('.ad-form__reset');
 
   var setAddress = function (arr) {
     addressField.value = arr[0] + ', ' + arr[1];
   };
 
   var disableForm = function () {
+    adForm.reset();
     window.util.changeDisabledAttribute(adFormElements, true);
+    adForm.classList.add('ad-form--disabled');
   };
 
   var enableForm = function () {
@@ -77,9 +80,24 @@
     checkFlatTypeField();
   });
 
+  var setSubmit = function (callbackFirst, callbackSecond) {
+    adForm.addEventListener('submit', function (evt) {
+      window.server.upload(new FormData(adForm), callbackFirst, callbackSecond);
+      evt.preventDefault();
+    });
+  };
+
+  var setReset = function (callback) {
+    resetButton.addEventListener('click', function () {
+      callback();
+    });
+  };
+
   window.form = {
     setAddress: setAddress,
     disable: disableForm,
-    enable: enableForm
+    enable: enableForm,
+    setSubmitAction: setSubmit,
+    setResetAction: setReset
   };
 })();

@@ -10,10 +10,30 @@
   var activatePage = function () {
     window.map.enable();
     window.form.enable();
-    window.download(window.map.renderPins);
+    window.server.download(successDownload, unsuccessDownload);
     window.form.setAddress(window.map.getСoords());
+  };
+
+  var successSubmit = function () {
+    deactivatePage();
+    window.message.showSuccess();
+  };
+
+  var unsuccessSubmit = function (errorMessage) {
+    window.message.showError(errorMessage);
+  };
+
+  var successDownload = function (data) {
+    window.map.renderPins(data);
+  };
+
+  var unsuccessDownload = function (errorMessage) {
+    window.message.showError(errorMessage);
+    deactivatePage();
   };
 
   deactivatePage();
   window.map.setAction(activatePage);
+  window.form.setSubmitAction(successSubmit, unsuccessSubmit);
+  window.form.setResetAction(deactivatePage);
 })();
