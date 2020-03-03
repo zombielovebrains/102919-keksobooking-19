@@ -97,7 +97,7 @@
     setAddress: setAddress,
     disable: disableForm,
     enable: enableForm,
-    setSubmitAction: setAction,
+    setSubmitAction: setSubmit,
     setResetAction: setReset
   };
 })();
