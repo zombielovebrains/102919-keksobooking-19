@@ -80,7 +80,7 @@
     checkFlatTypeField();
   });
 
-  var setAction = function (callbackFirst, callbackSecond) {
+  var setSubmit = function (callbackFirst, callbackSecond) {
     adForm.addEventListener('submit', function (evt) {
       window.server.upload(new FormData(adForm), callbackFirst, callbackSecond);
       evt.preventDefault();

@@ -30,6 +30,6 @@
 
   deactivatePage();
   window.map.setAction(activatePage);
-  window.form.setAction(successSubmit, unsuccessSubmit);
+  window.form.setSubmit(successSubmit, unsuccessSubmit);
   window.form.setReset(deactivatePage);
 })();
