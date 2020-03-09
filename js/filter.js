@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
   var PINS_COUNT = 5;
   var STARTING_INDEX = 0;
