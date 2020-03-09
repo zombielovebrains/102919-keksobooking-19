@@ -45,6 +45,7 @@
 
   var renderPins = function (dataList) {
     var fragment = document.createDocumentFragment();
+    deletePins();
     dataList.forEach(function (item) {
       var pin = window.createPin(item);
       var data = item;

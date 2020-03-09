@@ -8,9 +8,9 @@
   };
 
   var activatePage = function () {
+    window.server.download(successDownload, unsuccessDownload);
     window.map.enable();
     window.form.enable();
-    window.server.download(successDownload, unsuccessDownload);
     window.form.setAddress(window.map.getСoords());
   };
 
@@ -24,7 +24,7 @@
   };
 
   var successDownload = function (data) {
-    window.map.renderPins(data);
+    window.filter(data, window.map.renderPins);
   };
 
   var unsuccessDownload = function (errorMessage) {
