@@ -24,7 +24,7 @@
   };
 
   var successDownload = function (data) {
-    window.filter(data, window.map.renderPins);
+    window.setFilters(Array.from(data), window.map.renderPins);
   };
 
   var unsuccessDownload = function (errorMessage) {
