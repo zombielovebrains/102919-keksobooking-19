@@ -21,60 +21,35 @@
   };
 
   var checkFilter = function (dataList) {
-    return filterByQuantity(dataList.filter(function (data) {
-      return filterByType(data) && filterByPrice(data) && filterByRooms(data) && filterByGuests(data) && filterByFeatures(data);
-    }));
-  };
-
-  var filterByType = function (data) {
-    switch (true) {
-      case Select.type.value === 'any':
-      case Select.type.value === data.offer.type:
-        return true;
-      default:
-        return false;
-    }
-  };
-
-  var filterByPrice = function (data) {
-    switch (true) {
-      case Select.price.value === 'any':
-      case Select.price.value === 'middle' && parseInt(data.offer.price, 10) >= 10000 && parseInt(data.offer.price, 10) < 50000:
-      case Select.price.value === 'low' && parseInt(data.offer.price, 10) < 10000:
-      case Select.price.value === 'high' && parseInt(data.offer.price, 10) >= 50000:
-        return true;
-      default:
-        return false;
-    }
-  };
-
-  var filterByRooms = function (data) {
-    switch (true) {
-      case Select.rooms.value === 'any':
-      case parseInt(Select.rooms.value, 10) === data.offer.rooms:
-        return true;
-      default:
-        return false;
-    }
-  };
-
-  var filterByGuests = function (data) {
-    switch (true) {
-      case Select.guests.value === 'any':
-      case parseInt(Select.guests.value, 10) === data.offer.guests:
-        return true;
-      default:
-        return false;
-    }
-  };
-
-  var filterByFeatures = function (data) {
     var featureValues = Select.features.filter(function (elem) {
       return elem.checked;
     }).map(function (elem) {
       return elem.value;
     });
 
+    return filterByQuantity(dataList.filter(function (data) {
+      return filterByType(data) && filterByPrice(data) && filterByRooms(data) && filterByGuests(data) && filterByFeatures(data, featureValues);
+    }));
+  };
+
+  var filterByType = function (data) {
+    return Select.type.value === 'any' || Select.type.value === data.offer.type;
+  };
+
+  var filterByPrice = function (data) {
+    return Select.price.value === 'any' || (Select.price.value === 'middle' && parseInt(data.offer.price, 10) >= 10000 && parseInt(data.offer.price, 10) < 50000) ||
+    (Select.price.value === 'low' && parseInt(data.offer.price, 10) < 10000) || (Select.price.value === 'high' && parseInt(data.offer.price, 10) >= 50000);
+  };
+
+  var filterByRooms = function (data) {
+    return Select.rooms.value === 'any' || parseInt(Select.rooms.value, 10) === data.offer.rooms;
+  };
+
+  var filterByGuests = function (data) {
+    return Select.guests.value === 'any' || parseInt(Select.guests.value, 10) === data.offer.guests;
+  };
+
+  var filterByFeatures = function (data, featureValues) {
     return checkContains(data.offer.features, featureValues);
   };
 
