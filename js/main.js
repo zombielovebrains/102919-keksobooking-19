@@ -29,7 +29,7 @@
       window.map.renderPins(window.filter.check(ads));
     };
 
-    filterChangeHandler(ads);
+    filterChangeHandler();
     window.filter.set(filterChangeHandler);
   };
 
