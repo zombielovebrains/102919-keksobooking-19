@@ -24,7 +24,13 @@
   };
 
   var successDownload = function (data) {
-    window.setFilters(Array.from(data), window.map.renderPins);
+    var ads = Array.from(data);
+    var filterChangeHandler = function () {
+      window.map.renderPins(window.filter.check(ads));
+    };
+
+    filterChangeHandler(ads);
+    window.filter.set(filterChangeHandler);
   };
 
   var unsuccessDownload = function (errorMessage) {
