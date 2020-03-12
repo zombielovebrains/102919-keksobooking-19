@@ -54,12 +54,9 @@
   };
 
   var checkContains = function (set, subset) {
-    for (var i = 0; i < subset.length; i++) {
-      if (set.indexOf(subset[i]) === -1) {
-        return false;
-      }
-    }
-    return true;
+    return subset.every(function (feature) {
+      return set.includes(feature);
+    });
   };
 
   window.filter = {
