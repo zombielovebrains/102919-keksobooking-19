@@ -72,7 +72,7 @@
     var featureValues = Select.features.filter(function (elem) {
       return elem.checked;
     }).map(function (elem) {
-      return elem.value
+      return elem.value;
     });
 
     return checkContains(data.offer.features, featureValues);
@@ -80,12 +80,12 @@
 
   var checkContains = function (set, subset) {
     for (var i = 0; i < subset.length; i++) {
-      if (set.indexOf(subset[i]) == -1) {
+      if (set.indexOf(subset[i]) === -1) {
         return false;
       }
     }
     return true;
-};
+  };
 
   window.filter = {
     set: setFilters,
