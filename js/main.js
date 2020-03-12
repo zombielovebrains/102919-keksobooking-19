@@ -25,9 +25,9 @@
 
   var successDownload = function (data) {
     var ads = Array.from(data);
-    var filterChangeHandler = function () {
+    var filterChangeHandler = window.debounce(function () {
       window.map.renderPins(window.filter.check(ads));
-    };
+    });
 
     filterChangeHandler();
     window.filter.set(filterChangeHandler);
