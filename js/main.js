@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  var ads;
   var deactivatePage = function () {
     window.map.disable();
     window.form.disable();
@@ -14,6 +15,10 @@
     window.form.setAddress(window.map.getСoords());
   };
 
+  var filterChangeHandler = window.debounce(function () {
+    window.map.renderPins(window.filter.check(ads));
+  });
+
   var successSubmit = function () {
     deactivatePage();
     window.message.showSuccess();
@@ -24,12 +29,8 @@
   };
 
   var successDownload = function (data) {
-    var ads = Array.from(data);
-    var filterChangeHandler = function () {
-      window.map.renderPins(window.filter.check(ads));
-    };
-
-    filterChangeHandler();
+    ads = Array.from(data);
+    window.map.renderPins(window.filter.check(ads));
     window.filter.set(filterChangeHandler);
   };
 
