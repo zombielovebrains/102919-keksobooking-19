@@ -23,9 +23,9 @@
 
   var generatePhotoFragment = function (photos) {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < photos.length; i++) {
-      fragment.appendChild(createPhotoElement(photos[i]));
-    }
+    photos.forEach(function (item) {
+      fragment.appendChild(createPhotoElement(item));
+    });
     return fragment;
   };
 
@@ -38,9 +38,9 @@
 
   var generateFeatureFragment = function (features) {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < features.length; i++) {
-      fragment.appendChild(createFeatureElement(features[i]));
-    }
+    features.forEach(function (item) {
+      fragment.appendChild(createFeatureElement(item));
+    });
     return fragment;
   };
 

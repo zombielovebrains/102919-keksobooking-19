@@ -2,6 +2,7 @@
 
 (function () {
   var adForm = document.querySelector('.ad-form');
+  var adFormHeader = adForm.querySelector('.ad-form-header');
   var adFormElements = adForm.querySelectorAll('.ad-form__element');
   var roomNumber = adForm.querySelector('#room_number');
   var flatType = adForm.querySelector('#type');
@@ -20,11 +21,13 @@
 
   var disableForm = function () {
     adForm.reset();
+    adFormHeader.disabled = true;
     window.util.changeDisabledAttribute(adFormElements, true);
     adForm.classList.add('ad-form--disabled');
   };
 
   var enableForm = function () {
+    adFormHeader.disabled = false;
     window.util.changeDisabledAttribute(adFormElements, false);
     adForm.classList.remove('ad-form--disabled');
   };
@@ -90,6 +93,7 @@
   var setReset = function (callback) {
     resetButton.addEventListener('click', function () {
       callback();
+      window.deleteAllPhotos();
     });
   };
 
