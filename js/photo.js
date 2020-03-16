@@ -39,7 +39,7 @@
 
   var checkType = function (name) {
     return FILE_TYPES.some(function (it) {
-     return name.endsWith(it);
+      return name.endsWith(it);
     });
   };
 
