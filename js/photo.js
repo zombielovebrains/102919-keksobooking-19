@@ -3,25 +3,32 @@
 (function () {
   var FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
   var ORIGINAL_SRC = 'img/muffin-grey.svg';
-  var FileChooser = {
-    avatar: document.querySelector('#avatar'),
-    images: document.querySelector('#images')
+  var Loader = {
+    AVATAR: document.querySelector('#avatar'),
+    IMAGES: document.querySelector('#images')
   };
 
   var Preview = {
-    avatar: document.querySelector('.ad-form-header__preview img'),
-    images: document.querySelector('.ad-form__photo-container')
+    AVATAR: document.querySelector('.ad-form-header__preview img'),
+    IMAGES: document.querySelector('.ad-form__photo-container')
   };
 
   var deleteAvatar = function () {
-    Preview.avatar.src = ORIGINAL_SRC;
+    Preview.AVATAR.src = ORIGINAL_SRC;
   };
 
   var deleteImages = function () {
-    var photos = document.querySelectorAll('.ad-form__photo');
+    var photos = Preview.IMAGES.querySelectorAll('.ad-form__photo');
     photos.forEach(function (item) {
-      Preview.images.removeChild(item);
+      Preview.IMAGES.removeChild(item);
     });
+  };
+
+  var deleteImageSample = function () {
+    var photo = Preview.IMAGES.querySelector('.ad-form__photo')
+    if (!photo.hasChildNodes()) {
+      Preview.IMAGES.removeChild(photo);
+    }
   };
 
   var deleteAllPhotos = function () {
@@ -82,28 +89,28 @@
 
 
   var avatarUploadHandler = function () {
-    var file = FileChooser.avatar.files[0];
+    var file = Loader.AVATAR.files[0];
     var fileName = file.name.toLowerCase();
 
     if (checkType(fileName)) {
-      createAvatarReader(Preview.avatar, file);
+      createAvatarReader(Preview.AVATAR, file);
     }
   };
 
   var imagesUploadHandler = function () {
-    var files = Array.from(FileChooser.images.files);
+    var files = Array.from(Loader.IMAGES.files);
     var fileNames = getNames(files);
 
     if (fileNames.every(checkType)) {
-      deleteImages();
+      deleteImageSample();
       files.forEach(function (item) {
-        createImagesReader(Preview.images, item);
+        createImagesReader(Preview.IMAGES, item);
       });
     }
   };
 
-  FileChooser.avatar.addEventListener('change', avatarUploadHandler);
-  FileChooser.images.addEventListener('change', imagesUploadHandler);
+  Loader.AVATAR.addEventListener('change', avatarUploadHandler);
+  Loader.IMAGES.addEventListener('change', imagesUploadHandler);
 
   window.deleteAllPhotos = deleteAllPhotos;
 })();

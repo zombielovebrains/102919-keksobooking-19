@@ -22,7 +22,6 @@
   var disableForm = function () {
     adForm.reset();
     adFormHeader.disabled = true;
-    window.deleteAllPhotos();
     window.util.changeDisabledAttribute(adFormElements, true);
     adForm.classList.add('ad-form--disabled');
   };
@@ -94,6 +93,7 @@
   var setReset = function (callback) {
     resetButton.addEventListener('click', function () {
       callback();
+      window.deleteAllPhotos();
     });
   };
 

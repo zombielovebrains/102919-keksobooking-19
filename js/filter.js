@@ -4,16 +4,16 @@
   var PINS_COUNT = 5;
   var STARTING_INDEX = 0;
   var Select = {
-    form: document.querySelector('.map__filters'),
-    type: document.querySelector('#housing-type'),
-    price: document.querySelector('#housing-price'),
-    rooms: document.querySelector('#housing-rooms'),
-    guests: document.querySelector('#housing-guests'),
-    features: Array.from(document.querySelectorAll('.map__checkbox'))
+    FORM: document.querySelector('.map__filters'),
+    TYPE: document.querySelector('#housing-type'),
+    PRICE: document.querySelector('#housing-price'),
+    ROOMS: document.querySelector('#housing-rooms'),
+    GUESTS: document.querySelector('#housing-guests'),
+    FEATURES: Array.from(document.querySelectorAll('.map__checkbox'))
   };
 
   var setFilters = function (handler) {
-    Select.form.addEventListener('change', handler);
+    Select.FORM.addEventListener('change', handler);
   };
 
   var filterByQuantity = function (dataList) {
@@ -21,7 +21,7 @@
   };
 
   var checkFilter = function (dataList) {
-    var featureValues = Select.features.filter(function (elem) {
+    var featureValues = Select.FEATURES.filter(function (elem) {
       return elem.checked;
     }).map(function (elem) {
       return elem.value;
@@ -33,20 +33,20 @@
   };
 
   var filterByType = function (data) {
-    return Select.type.value === 'any' || Select.type.value === data.offer.type;
+    return Select.TYPE.value === 'any' || Select.TYPE.value === data.offer.type;
   };
 
   var filterByPrice = function (data) {
-    return Select.price.value === 'any' || (Select.price.value === 'middle' && parseInt(data.offer.price, 10) >= 10000 && parseInt(data.offer.price, 10) < 50000) ||
-    (Select.price.value === 'low' && parseInt(data.offer.price, 10) < 10000) || (Select.price.value === 'high' && parseInt(data.offer.price, 10) >= 50000);
+    return Select.PRICE.value === 'any' || (Select.PRICE.value === 'middle' && parseInt(data.offer.price, 10) >= 10000 && parseInt(data.offer.price, 10) < 50000) ||
+    (Select.PRICE.value === 'low' && parseInt(data.offer.price, 10) < 10000) || (Select.PRICE.value === 'high' && parseInt(data.offer.price, 10) >= 50000);
   };
 
   var filterByRooms = function (data) {
-    return Select.rooms.value === 'any' || parseInt(Select.rooms.value, 10) === data.offer.rooms;
+    return Select.ROOMS.value === 'any' || parseInt(Select.ROOMS.value, 10) === data.offer.rooms;
   };
 
   var filterByGuests = function (data) {
-    return Select.guests.value === 'any' || parseInt(Select.guests.value, 10) === data.offer.guests;
+    return Select.GUESTS.value === 'any' || parseInt(Select.GUESTS.value, 10) === data.offer.guests;
   };
 
   var filterByFeatures = function (data, featureValues) {
