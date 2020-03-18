@@ -9,7 +9,6 @@
   var timeInField = adForm.querySelector('#timein');
   var timeOutField = adForm.querySelector('#timeout');
   var capacity = adForm.querySelector('#capacity');
-  var titleField = adForm.querySelector('#title');
   var priceField = adForm.querySelector('#price');
   var addressField = adForm.querySelector('#address');
   var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
@@ -51,8 +50,6 @@
       capacity.setCustomValidity('');
     }
   };
-
-
 
   var checkFlatTypeField = function () {
     var minPrice = minPrices[flatType.value];
