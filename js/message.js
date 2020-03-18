@@ -36,7 +36,6 @@
       document.body.removeChild(document.querySelector('.success'));
     } else if (document.querySelector('.error')) {
       document.body.removeChild(document.querySelector('.error'));
-      // document.querySelector('.error__button').removeEventListener('click', mouseCloseHandler);
     }
     document.removeEventListener('keydown', keyEscCloseHandler);
   };
