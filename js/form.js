@@ -55,7 +55,7 @@
 
 
   var checkFlatTypeField = function () {
-    const minPrice = minPrices[flatType.value];
+    var minPrice = minPrices[flatType.value];
     if (parseInt(priceField.value, 10) < minPrice) {
       flatType.setCustomValidity('Минимальная цена за ночь ' + minPrice);
     } else {
