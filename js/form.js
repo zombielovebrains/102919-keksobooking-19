@@ -3,7 +3,7 @@
 (function () {
   var adForm = document.querySelector('.ad-form');
   var adFormHeader = adForm.querySelector('.ad-form-header');
-  var adFormElements = adForm.querySelectorAll('.ad-form__element');
+  var adFormFieldsets = adForm.querySelectorAll('.ad-form__element');
   var roomNumber = adForm.querySelector('#room_number');
   var flatType = adForm.querySelector('#type');
   var timeInField = adForm.querySelector('#timein');
@@ -27,13 +27,13 @@
   var disableForm = function () {
     adForm.reset();
     adFormHeader.disabled = true;
-    window.changeDisabledAttribute(adFormElements, true);
+    window.util.changeDisabledAttribute(adFormFieldsets, true);
     adForm.classList.add('ad-form--disabled');
   };
 
   var enableForm = function () {
     adFormHeader.disabled = false;
-    window.changeDisabledAttribute(adFormElements, false);
+    window.util.changeDisabledAttribute(adFormFieldsets, false);
     adForm.classList.remove('ad-form--disabled');
   };
 

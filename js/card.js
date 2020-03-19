@@ -4,10 +4,10 @@
   var PHOTO_WIDTH = 45;
   var PHOTO_HEIGHT = 40;
   var offerTypeMap = {
-    'house': 'Дом',
-    'palace': 'Дворец',
-    'bungalo': 'Бунгало',
-    'flat': 'Квартира'
+    house: 'Дом',
+    palace: 'Дворец',
+    bungalo: 'Бунгало',
+    flat: 'Квартира'
   };
   var similarCardTemplate = document.querySelector('#card').content.querySelector('.map__card');
 
@@ -51,11 +51,13 @@
 
   var createCard = function (data) { // Заполняем шаблон объявления данными из объекта
     var cardElement = similarCardTemplate.cloneNode(true);
+    var priceElement = cardElement.querySelector('.popup__text--price');
 
     cardElement.querySelector('.popup__avatar').src = data.author.avatar;
     cardElement.querySelector('.popup__title').textContent = data.offer.title;
     cardElement.querySelector('.popup__text--address').textContent = data.offer.address;
-    cardElement.querySelector('.popup__text--price').innerHTML = data.offer.price + ' &#x20bd;' + '<span>/ночь</span>';
+    priceElement.textContent = data.offer.price + ' ₽';
+    priceElement.innerHTML = priceElement.textContent + '<span>/ночь</span>';
     cardElement.querySelector('.popup__type').textContent = offerTypeMap[data.offer.type];
     cardElement.querySelector('.popup__text--capacity').textContent = data.offer.rooms + getSuffix(parseInt(data.offer.rooms, 10), [' комната для ', ' комнаты для ', ' комнат для ']) + data.offer.guests + getSuffix(parseInt(data.offer.guests, 10), [' гостя', ' гостей', ' гостей']);
     cardElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + data.offer.checkin + ', выезд до ' + data.offer.checkout;

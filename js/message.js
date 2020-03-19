@@ -1,19 +1,17 @@
 'use strict';
 
 (function () {
-  var ESC_CODE = 27;
-  var LEFT_MOUSE_BUTTON = 0;
   var successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
   var errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
 
   var keyEscCloseHandler = function (evt) {
-    if (evt.keyCode === ESC_CODE) {
+    if (evt.keyCode === window.util.ESC_CODE) {
       closeMessage();
     }
   };
 
   var mouseCloseHandler = function (evt) {
-    if (evt.button === LEFT_MOUSE_BUTTON) {
+    if (evt.button === window.util.LEFT_MOUSE_BUTTON) {
       closeMessage();
     }
   };

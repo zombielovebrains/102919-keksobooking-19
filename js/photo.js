@@ -26,7 +26,7 @@
 
   var deleteImageSample = function () {
     var photo = Preview.IMAGES.querySelector('.ad-form__photo');
-    if (!photo.hasChildNodes()) {
+    if (photo && !photo.hasChildNodes()) {
       Preview.IMAGES.removeChild(photo);
     }
   };

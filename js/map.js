@@ -6,13 +6,10 @@
   var MAIN_PIN_HEIGTH = 84;
   var MAIN_PIN_ORIGINAL_LEFT = '570px';
   var MAIN_PIN_ORIGINAL_TOP = '375px';
-  var ENTER_CODE = 13;
-  var ESC_CODE = 27;
-  var LEFT_MOUSE_BUTTON = 0;
   var similarCardList = document.querySelector('.map');
   var similarPinList = document.querySelector('.map__pins');
   var mapFiltersForm = similarCardList.querySelector('.map__filters');
-  var mapFiltersElements = Array.from(mapFiltersForm.children);
+  var mapFilters = Array.from(mapFiltersForm.children);
   var mapMainPin = document.querySelector('.map__pin--main');
 
   var resetMainPinStyles = function () {
@@ -21,7 +18,7 @@
   };
 
   var keyEscCloseHandler = function (evt) {
-    if (evt.keyCode === ESC_CODE) {
+    if (evt.keyCode === window.util.ESC_CODE) {
       closeCard();
     }
   };
@@ -82,7 +79,7 @@
   };
 
   var disableMap = function () {
-    window.changeDisabledAttribute(mapFiltersElements, true);
+    window.util.changeDisabledAttribute(mapFilters, true);
     similarCardList.classList.add('map--faded');
     closeCard();
     deletePins();
@@ -90,20 +87,20 @@
   };
 
   var enableMap = function () {
-    window.changeDisabledAttribute(mapFiltersElements, false);
+    window.util.changeDisabledAttribute(mapFilters, false);
     similarCardList.classList.remove('map--faded');
   };
 
   var setAction = function (callback) {
 
     mapMainPin.addEventListener('mousedown', function (evt) {
-      if (evt.button === LEFT_MOUSE_BUTTON) {
+      if (evt.button === window.util.LEFT_MOUSE_BUTTON) {
         callback();
       }
     });
 
     mapMainPin.addEventListener('keydown', function (evt) {
-      if (evt.keyCode === ENTER_CODE) {
+      if (evt.keyCode === window.util.ENTER_CODE) {
         callback();
       }
     });
@@ -127,10 +124,12 @@
   window.map = {
     disable: disableMap,
     enable: enableMap,
-    getСoords: getСoordinates,
+    getCoords: getСoordinates,
     renderPins: renderPins,
     setAction: setAction,
     mainPin: mapMainPin,
-    resetMainPinStyles: resetMainPinStyles
+    resetMainPinStyles: resetMainPinStyles,
+    MAIN_PIN_HALFWIDTH: MAIN_PIN_HALFWIDTH,
+    MAIN_PIN_HEIGTH: MAIN_PIN_HEIGTH
   };
 })();

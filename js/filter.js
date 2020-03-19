@@ -12,6 +12,15 @@
     FEATURES: Array.from(document.querySelectorAll('.map__checkbox'))
   };
 
+  var PriceValue = {
+    MIDDLE: {
+      BOTTOM: 10000,
+      TOP: 50000
+    },
+    LOW: 10000,
+    HIGH: 50000
+  };
+
   var setFilters = function (handler) {
     Select.FORM.addEventListener('change', handler);
   };
@@ -37,8 +46,8 @@
   };
 
   var filterByPrice = function (data) {
-    return Select.PRICE.value === 'any' || (Select.PRICE.value === 'middle' && parseInt(data.offer.price, 10) >= 10000 && parseInt(data.offer.price, 10) < 50000) ||
-    (Select.PRICE.value === 'low' && parseInt(data.offer.price, 10) < 10000) || (Select.PRICE.value === 'high' && parseInt(data.offer.price, 10) >= 50000);
+    return Select.PRICE.value === 'any' || (Select.PRICE.value === 'middle' && parseInt(data.offer.price, 10) >= PriceValue.MIDDLE.BOTTOM && parseInt(data.offer.price, 10) < PriceValue.MIDDLE.TOP) ||
+    (Select.PRICE.value === 'low' && parseInt(data.offer.price, 10) < PriceValue.LOW) || (Select.PRICE.value === 'high' && parseInt(data.offer.price, 10) >= PriceValue.HIGH);
   };
 
   var filterByRooms = function (data) {

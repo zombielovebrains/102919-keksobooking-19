@@ -5,14 +5,14 @@
   var deactivatePage = function () {
     window.map.disable();
     window.form.disable();
-    window.form.setAddress(window.map.getСoords());
+    window.form.setAddress(window.map.getCoords());
   };
 
   var activatePage = function () {
     window.server.download(successDownload, unsuccessDownload);
     window.map.enable();
     window.form.enable();
-    window.form.setAddress(window.map.getСoords());
+    window.form.setAddress(window.map.getCoords());
   };
 
   var filterChangeHandler = window.debounce(function () {
@@ -21,6 +21,7 @@
 
   var successSubmit = function () {
     deactivatePage();
+    window.deleteAllPhotos();
     window.message.showSuccess();
   };
 

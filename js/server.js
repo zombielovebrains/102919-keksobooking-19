@@ -1,12 +1,12 @@
 'use strict';
 
 (function () {
-  var StatusCode = {
-    OK: 200
-  };
   var TIMEOUT_IN_MS = 10000;
   var SERVER_DATA_URL = 'https://js.dump.academy/keksobooking/data';
   var SERVER_URL = 'https://js.dump.academy/keksobooking';
+  var StatusCode = {
+    OK: 200
+  };
 
   var createRequest = function (onSuccess, onError) {
     var xhr = new XMLHttpRequest();
