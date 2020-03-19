@@ -44,11 +44,6 @@
     return fragment;
   };
 
-  var getSuffix = function (number, titles) {
-    var cases = [2, 0, 1, 1, 1, 2];
-    return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
-  };
-
   var createCard = function (data) { // Заполняем шаблон объявления данными из объекта
     var card = similarCardTemplate.cloneNode(true);
     var price = card.querySelector('.popup__text--price');
@@ -59,7 +54,7 @@
     price.textContent = data.offer.price + ' ₽';
     price.innerHTML = price.textContent + '<span>/ночь</span>';
     card.querySelector('.popup__type').textContent = offerTypeMap[data.offer.type];
-    card.querySelector('.popup__text--capacity').textContent = data.offer.rooms + getSuffix(parseInt(data.offer.rooms, 10), [' комната для ', ' комнаты для ', ' комнат для ']) + data.offer.guests + getSuffix(parseInt(data.offer.guests, 10), [' гостя', ' гостей', ' гостей']);
+    card.querySelector('.popup__text--capacity').textContent = data.offer.rooms + window.util.getSuffix(parseInt(data.offer.rooms, 10), [' комната для ', ' комнаты для ', ' комнат для ']) + data.offer.guests + window.util.getSuffix(parseInt(data.offer.guests, 10), [' гостя', ' гостей', ' гостей']);
     card.querySelector('.popup__text--time').textContent = 'Заезд после ' + data.offer.checkin + ', выезд до ' + data.offer.checkout;
 
     card.querySelector('.popup__features').innerHTML = '';
