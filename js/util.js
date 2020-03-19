@@ -19,7 +19,7 @@
 
 
   var getSuffix = function (number, titles) {
-    var titleIndex = (number % 100 > NumberValue.MIN_FOR_MORE_THAN_HUNDRED && number % 100 < NumberValue.MAX_FOR_MORE_THAN_HUNDRED) ? 2 : INDEXES_FOR_LESS_THAN_HUNDRED[(number % 10 < NumberValue.MAX_FOR_MORE_THAN_HUNDRED) ? number % 10 : 5] ;
+    var titleIndex = (number % 100 > NumberValue.MIN_FOR_MORE_THAN_HUNDRED && number % 100 < NumberValue.MAX_FOR_MORE_THAN_HUNDRED) ? 2 : INDEXES_FOR_LESS_THAN_HUNDRED[(number % 10 < NumberValue.MAX_FOR_MORE_THAN_HUNDRED) ? number % 10 : 5];
     return titles[titleIndex];
   };
 
