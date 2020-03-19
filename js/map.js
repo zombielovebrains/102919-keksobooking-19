@@ -79,6 +79,7 @@
   };
 
   var disableMap = function () {
+    mapFiltersForm.reset();
     window.util.changeDisabledAttribute(mapFilters, true);
     similarCardList.classList.add('map--faded');
     closeCard();
