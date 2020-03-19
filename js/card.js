@@ -50,26 +50,26 @@
   };
 
   var createCard = function (data) { // Заполняем шаблон объявления данными из объекта
-    var cardElement = similarCardTemplate.cloneNode(true);
-    var priceElement = cardElement.querySelector('.popup__text--price');
+    var card = similarCardTemplate.cloneNode(true);
+    var price = card.querySelector('.popup__text--price');
 
-    cardElement.querySelector('.popup__avatar').src = data.author.avatar;
-    cardElement.querySelector('.popup__title').textContent = data.offer.title;
-    cardElement.querySelector('.popup__text--address').textContent = data.offer.address;
-    priceElement.textContent = data.offer.price + ' ₽';
-    priceElement.innerHTML = priceElement.textContent + '<span>/ночь</span>';
-    cardElement.querySelector('.popup__type').textContent = offerTypeMap[data.offer.type];
-    cardElement.querySelector('.popup__text--capacity').textContent = data.offer.rooms + getSuffix(parseInt(data.offer.rooms, 10), [' комната для ', ' комнаты для ', ' комнат для ']) + data.offer.guests + getSuffix(parseInt(data.offer.guests, 10), [' гостя', ' гостей', ' гостей']);
-    cardElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + data.offer.checkin + ', выезд до ' + data.offer.checkout;
+    card.querySelector('.popup__avatar').src = data.author.avatar;
+    card.querySelector('.popup__title').textContent = data.offer.title;
+    card.querySelector('.popup__text--address').textContent = data.offer.address;
+    price.textContent = data.offer.price + ' ₽';
+    price.innerHTML = price.textContent + '<span>/ночь</span>';
+    card.querySelector('.popup__type').textContent = offerTypeMap[data.offer.type];
+    card.querySelector('.popup__text--capacity').textContent = data.offer.rooms + getSuffix(parseInt(data.offer.rooms, 10), [' комната для ', ' комнаты для ', ' комнат для ']) + data.offer.guests + getSuffix(parseInt(data.offer.guests, 10), [' гостя', ' гостей', ' гостей']);
+    card.querySelector('.popup__text--time').textContent = 'Заезд после ' + data.offer.checkin + ', выезд до ' + data.offer.checkout;
 
-    cardElement.querySelector('.popup__features').innerHTML = '';
-    cardElement.querySelector('.popup__features').appendChild(generateFeatureFragment(data.offer.features));
+    card.querySelector('.popup__features').innerHTML = '';
+    card.querySelector('.popup__features').appendChild(generateFeatureFragment(data.offer.features));
 
-    cardElement.querySelector('.popup__description').textContent = data.offer.description;
+    card.querySelector('.popup__description').textContent = data.offer.description;
 
-    cardElement.querySelector('.popup__photos').innerHTML = '';
-    cardElement.querySelector('.popup__photos').appendChild(generatePhotoFragment(data.offer.photos));
-    return cardElement;
+    card.querySelector('.popup__photos').innerHTML = '';
+    card.querySelector('.popup__photos').appendChild(generatePhotoFragment(data.offer.photos));
+    return card;
   };
 
   window.createCard = createCard;
