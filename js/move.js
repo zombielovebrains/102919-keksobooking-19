@@ -6,7 +6,7 @@
   var MIN_Y = 130 - window.map.MAIN_PIN_HEIGHT;
   var MAX_Y = 630 - window.map.MAIN_PIN_HEIGHT;
   var mapMainPin = window.map.mainPin;
-  console.log(MIN_Y, MAX_Y);
+
   mapMainPin.addEventListener('mousedown', function (evt) {
     if (evt.button === window.util.LEFT_MOUSE_BUTTON) {
       evt.preventDefault();
