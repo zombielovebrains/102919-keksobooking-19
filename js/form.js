@@ -2,17 +2,17 @@
 
 (function () {
   var adForm = document.querySelector('.ad-form');
-  var adFormHeader = adForm.querySelector('.ad-form-header');
+  var adFormHeaderFieldset = adForm.querySelector('.ad-form-header');
   var adFormFieldsets = adForm.querySelectorAll('.ad-form__element');
-  var roomNumber = adForm.querySelector('#room_number');
-  var flatType = adForm.querySelector('#type');
+  var roomNumberField = adForm.querySelector('#room_number');
+  var flatTypeField = adForm.querySelector('#type');
   var timeInField = adForm.querySelector('#timein');
   var timeOutField = adForm.querySelector('#timeout');
-  var capacity = adForm.querySelector('#capacity');
+  var capacityField = adForm.querySelector('#capacity');
   var priceField = adForm.querySelector('#price');
   var addressField = adForm.querySelector('#address');
   var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
-  var resetButton = adForm.querySelector('.ad-form__reset');
+  var adFormResetButton = adForm.querySelector('.ad-form__reset');
   var minPrices = {
     flat: 1000,
     house: 5000,
@@ -26,37 +26,37 @@
 
   var disableForm = function () {
     adForm.reset();
-    adFormHeader.disabled = true;
+    adFormHeaderFieldset.disabled = true;
     window.util.changeDisabledAttribute(adFormFieldsets, true);
     adForm.classList.add('ad-form--disabled');
   };
 
   var enableForm = function () {
-    adFormHeader.disabled = false;
+    adFormHeaderFieldset.disabled = false;
     window.util.changeDisabledAttribute(adFormFieldsets, false);
     adForm.classList.remove('ad-form--disabled');
   };
 
   var checkCapacityField = function () {
-    if (roomNumber.value === '1' && capacity.value !== '1') {
-      capacity.setCustomValidity('1 комната — «для 1 гостя»');
-    } else if (roomNumber.value === '2' && (capacity.value !== '1' || capacity.value !== '2')) {
-      capacity.setCustomValidity('2 комнаты — «для 2 гостей» или «для 1 гостя»');
-    } else if (roomNumber.value === '3' && capacity.value === '0') {
-      capacity.setCustomValidity('3 комнаты — «для 3 гостей», «для 2 гостей» или «для 1 гостя»');
-    } else if (roomNumber.value === '100' && capacity.value !== '0') {
-      capacity.setCustomValidity('100 комнат — «не для гостей»');
+    if (roomNumberField.value === '1' && capacityField.value !== '1') {
+      capacityField.setCustomValidity('1 комната — «для 1 гостя»');
+    } else if (roomNumberField.value === '2' && (capacityField.value !== '1' || capacityField.value !== '2')) {
+      capacityField.setCustomValidity('2 комнаты — «для 2 гостей» или «для 1 гостя»');
+    } else if (roomNumberField.value === '3' && capacityField.value === '0') {
+      capacityField.setCustomValidity('3 комнаты — «для 3 гостей», «для 2 гостей» или «для 1 гостя»');
+    } else if (roomNumberField.value === '100' && capacityField.value !== '0') {
+      capacityField.setCustomValidity('100 комнат — «не для гостей»');
     } else {
-      capacity.setCustomValidity('');
+      capacityField.setCustomValidity('');
     }
   };
 
   var checkFlatTypeField = function () {
-    var minPrice = minPrices[flatType.value];
+    var minPrice = minPrices[flatTypeField.value];
     if (parseInt(priceField.value, 10) < minPrice) {
-      flatType.setCustomValidity('Минимальная цена за ночь ' + minPrice);
+      flatTypeField.setCustomValidity('Минимальная цена за ночь ' + minPrice);
     } else {
-      flatType.setCustomValidity('');
+      flatTypeField.setCustomValidity('');
     }
   };
 
@@ -81,7 +81,7 @@
   };
 
   var setReset = function (callback) {
-    resetButton.addEventListener('click', function () {
+    adFormResetButton.addEventListener('click', function () {
       callback();
       window.deleteAllPhotos();
     });

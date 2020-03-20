@@ -1,9 +1,9 @@
 'use strict';
 
 (function () {
-  var DISABLED_MAIN_PIN_HEIGTH = 31;
+  var DISABLED_MAIN_PIN_HEIGHT = 31;
   var MAIN_PIN_HALFWIDTH = 33;
-  var MAIN_PIN_HEIGTH = 84;
+  var MAIN_PIN_HEIGHT = 84;
   var MAIN_PIN_ORIGINAL_LEFT = '570px';
   var MAIN_PIN_ORIGINAL_TOP = '375px';
   var similarCardList = document.querySelector('.map');
@@ -71,9 +71,9 @@
     var pointX = Math.floor(parseInt(mapMainPin.style.left, 10) + MAIN_PIN_HALFWIDTH);
     var pointY;
     if (similarCardList.classList.contains('map--faded')) {
-      pointY = Math.floor(parseInt(mapMainPin.style.top, 10) + DISABLED_MAIN_PIN_HEIGTH);
+      pointY = Math.floor(parseInt(mapMainPin.style.top, 10) + DISABLED_MAIN_PIN_HEIGHT);
     } else {
-      pointY = Math.floor(parseInt(mapMainPin.style.top, 10) + MAIN_PIN_HEIGTH);
+      pointY = Math.floor(parseInt(mapMainPin.style.top, 10) + MAIN_PIN_HEIGHT);
     }
     return [pointX, pointY];
   };
@@ -131,6 +131,6 @@
     mainPin: mapMainPin,
     resetMainPinStyles: resetMainPinStyles,
     MAIN_PIN_HALFWIDTH: MAIN_PIN_HALFWIDTH,
-    MAIN_PIN_HEIGTH: MAIN_PIN_HEIGTH
+    MAIN_PIN_HEIGHT: MAIN_PIN_HEIGHT
   };
 })();
