@@ -1,6 +1,6 @@
-'use strict';
 
 (function () {
+  'use strict';
   var PINS_COUNT = 5;
   var STARTING_INDEX = 0;
   var Select = {

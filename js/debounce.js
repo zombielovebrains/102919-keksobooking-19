@@ -1,6 +1,6 @@
-'use strict';
 
 (function () {
+  'use strict';
   var DEBOUNCE_INTERVAL = 500; // ms
 
   window.debounce = function (cb) {

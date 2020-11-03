@@ -1,6 +1,6 @@
-'use strict';
 
 (function () {
+  'use strict';
   var FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
   var ORIGINAL_SRC = 'img/muffin-grey.svg';
   var Loader = {

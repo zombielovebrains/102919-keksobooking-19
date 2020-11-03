@@ -1,6 +1,6 @@
-'use strict';
 
 (function () {
+  'use strict';
   var adForm = document.querySelector('.ad-form');
   var adFormHeaderFieldset = adForm.querySelector('.ad-form-header');
   var adFormFieldsets = adForm.querySelectorAll('.ad-form__element');

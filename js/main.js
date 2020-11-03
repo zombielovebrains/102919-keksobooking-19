@@ -1,6 +1,5 @@
-'use strict';
-
 (function () {
+  'use strict';
   var ads;
   var deactivatePage = function () {
     window.map.disable();

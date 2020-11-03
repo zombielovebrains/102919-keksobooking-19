@@ -1,6 +1,6 @@
-'use strict';
 
 (function () {
+  'use strict';
   var PIN_HALFWIDTH = 25;
   var PIN_HEIGHT = 70;
   var similarPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');

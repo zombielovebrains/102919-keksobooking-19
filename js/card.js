@@ -1,6 +1,6 @@
-'use strict';
 
 (function () {
+  'use strict';
   var PHOTO_WIDTH = 45;
   var PHOTO_HEIGHT = 40;
   var offerTypeMap = {

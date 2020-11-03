@@ -1,6 +1,6 @@
-'use strict';
 
 (function () {
+  'use strict';
   var MIN_X = -window.map.MAIN_PIN_HALFWIDTH;
   var MAX_X = Math.floor(document.querySelector('.map__pins').offsetWidth) - window.map.MAIN_PIN_HALFWIDTH;
   var MIN_Y = 130 - window.map.MAIN_PIN_HEIGHT;

@@ -1,8 +1,9 @@
-'use strict';
 
 (function () {
+  'use strict';
+
   var TIMEOUT_IN_MS = 10000;
-  var SERVER_DATA_URL = 'https://js.dump.academy/keksobooking/data';
+  var SERVER_DATA_URL = 'js/ads.json';
   var SERVER_URL = 'https://js.dump.academy/keksobooking';
   var StatusCode = {
     OK: 200

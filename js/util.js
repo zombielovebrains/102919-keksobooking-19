@@ -1,6 +1,6 @@
-'use strict';
 
 (function () {
+  'use strict';
   var ENTER_CODE = 13;
   var ESC_CODE = 27;
   var LEFT_MOUSE_BUTTON = 0;
